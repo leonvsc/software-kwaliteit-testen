@@ -56,4 +56,5 @@ jobs:
     # Run JMeter Test
     - name: Run JMeter Test
       run: |
-        jmeter -n -t ".github/JMeterTestPlan/Demo web shop Tricentis.jmx" -l testresults.jtl -e -o ".github/JMeterTestPlan/Results/" -j jmeter.log
+        TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+        jmeter -n -t ".github/JMeterTestPlan/Demo web shop Tricentis.jmx" -l "${TIMESTAMP}testresults.jtl" -e -o ".github/JMeterTestPlan/Results/" -j "${TIMESTAMP} jmeter.log"
