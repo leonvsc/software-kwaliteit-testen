@@ -1,18 +1,21 @@
-name: Performance Test
+name: Performance Test pipeline
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "Gab-pipeline-test-branche" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+  # Triggers the workflow on push or pull request events but only for the "Gab-pipeline-test-branche" branch
+  push:
+    branches: [ "Gab-pipeline-test-branche" ]
+
+  pull_request:
+
 jobs:
   # This workflow contains a single job called "performance-test-build"
   performance-test-build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v2
@@ -29,8 +32,15 @@ jobs:
     #  uses: actions/setup-dotnet@v1
     #  with:
     #    dotnet-version: '6.0'
+    
+    # Installing Jmeter to run tests
+    - name: Install JMeter
+      run: |
+        wget -v https://downloads.apache.org//jmeter/binaries/apache-jmeter-5.6.2.tgz
+        tar -xzf apache-jmeter-5.6.2.tgz
+        echo "${PWD}/apache-jmeter-5.6.2/bin" >> $GITHUB_PATH
 
     # Run JMeter Test
     - name: Run JMeter Test
       run: |
-        jmeter -n -t path/to/your/testplan.jmx -l testresults.jtl -e -o path/to/output/folder
+        jmeter -n -t "/git/Gab-pipeline-test-branche/sourceCode/.github/JMeterTestPlan/Demo web shop Tricentis.jmx" -l testresults.jtl -e -o "/git/Gab-pipeline-test-branche/sourceCode/.github/JMeterTestPlan/Results/" -j jmeter.log
