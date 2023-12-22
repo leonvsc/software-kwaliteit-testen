@@ -66,7 +66,7 @@ jobs:
     # Run JMeter Test
     - name: Run JMeter Test
       run: |
-        jmeter -n -t ".github/JMeterTestPlan/Demo web shop Tricentis.jmx" -l .github/JMeterTestPlan/Reports/${{ env.TIMESTAMP }}_testresults.jtl -e -o .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report/ -j .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
+        jmeter -n -t ".github/JMeterTestPlan/Demo web shop Tricentis.jmx" -l .github/JMeterTestPlan/Reports/${{ env.TIMESTAMP }}_testresults.jtl -e -o .github/JMeterTestPlan/Results/Reports/ -j .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
 
     # Upload JMeter logs as an artifact
     #- name: Upload JMeter Logs
