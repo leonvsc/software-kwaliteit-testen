@@ -44,8 +44,11 @@ jobs:
     #    tar -xzf apache-jmeter-5.6.2.tgz
     #    echo "${PWD}/apache-jmeter-5.6.2/bin" >> $GITHUB_PATH
 
-    - name: Clear JMeter Output Directory
-      run: rm -rf .github/JMeterTestPlan/Results/*
+    - name: Create JMeter output folders
+      run: |
+          cd .github/JMeterTestPlan/Results/
+          mkdir Logs
+          mkdir Reports
 
     # Installing Jmeter to run tests
     - name: Install JMeter
@@ -63,7 +66,7 @@ jobs:
     # Run JMeter Test
     - name: Run JMeter Test
       run: |
-        jmeter -n -t ".github/JMeterTestPlan/Demo web shop Tricentis.jmx" -l .github/JMeterTestPlan/Results/${{ env.TIMESTAMP }}_testresults.jtl -e -o .github/JMeterTestPlan/Results/ -j .github/JMeterTestPlan/Results/${{ env.TIMESTAMP }}_jmeter.log
+        jmeter -n -t ".github/JMeterTestPlan/Demo web shop Tricentis.jmx" -l .github/JMeterTestPlan/Logs/${{ env.TIMESTAMP }}_testresults.jtl -e -o .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report/ -j .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
 
     # Upload JMeter logs as an artifact
     #- name: Upload JMeter Logs
@@ -84,11 +87,11 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: jmeter-logs
-        path: .github/JMeterTestPlan/Results/${{ env.TIMESTAMP }}_jmeter.log
+        path: .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
 
      # Upload JMeter Test Results (.jtl file) as an artifact
     - name: Upload JMeter Test Results
       uses: actions/upload-artifact@v2
       with:
         name: jmeter-results
-        path: .github/JMeterTestPlan/Results/${{ env.TIMESTAMP }}_testresults.jtl
+        path: .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_testresults.jtl
