@@ -40,6 +40,9 @@ jobs:
     #    tar -xzf apache-jmeter-5.6.2.tgz
     #    echo "${PWD}/apache-jmeter-5.6.2/bin" >> $GITHUB_PATH
 
+    - name: Clear JMeter Output Directory
+      run: rm -rf .github/JMeterTestPlan/Results/*
+
     # Installing Jmeter to run tests
     - name: Install JMeter
       run: |
