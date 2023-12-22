@@ -67,11 +67,11 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: jmeter-logs
-        path: "${TIMESTAMP}_jmeter.log"
+        path: ".github/JMeterTestPlan/Results/${TIMESTAMP}_jmeter.log"
 
     # Upload JMeter Test Results (.jtl file) as an artifact
     - name: Upload JMeter Test Results
       uses: actions/upload-artifact@v2
       with:
         name: jmeter-results
-        path: "${TIMESTAMP}_testresults.jtl"
+        path: ".github/JMeterTestPlan/Results/${TIMESTAMP}_testresults.jtl"
