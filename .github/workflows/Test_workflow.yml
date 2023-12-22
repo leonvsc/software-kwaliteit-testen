@@ -31,9 +31,6 @@ jobs:
     - name: Generate Timestamp variable
       run: echo "TIMESTAMP=$(date +%Y%m%d-%H%M%S)" >> $GITHUB_ENV
 
-      env:
-        LOG: "${{env.TIMESTAMP}} jmeter.log"
-
     # Setup .NET if needed
     #- name: Setup .NET
     #  uses: actions/setup-dotnet@v1
@@ -53,7 +50,7 @@ jobs:
     # Installing Jmeter to run tests
     - name: Install JMeter
       run: |
-        wget -v https://downloads.apache.org//jmeter/binaries/apache-jmeter-5.6.2.tgz
+        wget https://downloads.apache.org//jmeter/binaries/apache-jmeter-5.6.2.tgz
         if [ $? -eq 0 ]; then
             echo "Succesfully downloaded JMeter"
             tar -xzf apache-jmeter-5.6.2.tgz
@@ -66,18 +63,32 @@ jobs:
     # Run JMeter Test
     - name: Run JMeter Test
       run: |
-        jmeter -n -t ".github/JMeterTestPlan/Demo web shop Tricentis.jmx" -l "${{env.TIMESTAMP}} testresults.jtl" -e -o ".github/JMeterTestPlan/Results/" -j "${{env.LOG}}"
+        jmeter -n -t ".github/JMeterTestPlan/Demo web shop Tricentis.jmx" -l .github/JMeterTestPlan/Results/${{ env.TIMESTAMP }}_testresults.jtl -e -o ".github/JMeterTestPlan/Results/" -j .github/JMeterTestPlan/Results/${{ env.TIMESTAMP }}_jmeter.log
+
+    # Upload JMeter logs as an artifact
+    #- name: Upload JMeter Logs
+    #  uses: actions/upload-artifact@v2
+    #  with:
+    #    name: "$/{/{env.TIMESTAMP}/}/ jmeter.log"
+    #    path: .github/JMeterTestPlan/Results/
+
+    # Upload JMeter Test Results (.jtl file) as an artifact
+    #- name: Upload JMeter Test Results
+    #  uses: actions/upload-artifact@v2
+    #  with:
+    #    name: "$/{/{env.TIMESTAMP}/}/ testresults.jtl"
+    #    path: .github/JMeterTestPlan/Results/
 
     # Upload JMeter logs as an artifact
     - name: Upload JMeter Logs
       uses: actions/upload-artifact@v2
       with:
-        name: "${{env.LOG}} jmeter.log"
-        path: .github/JMeterTestPlan/Results/
+        name: jmeter-logs
+        path: .github/JMeterTestPlan/Results/${{ env.TIMESTAMP }}_jmeter.log
 
-    # Upload JMeter Test Results (.jtl file) as an artifact
+     # Upload JMeter Test Results (.jtl file) as an artifact
     - name: Upload JMeter Test Results
       uses: actions/upload-artifact@v2
       with:
-        name: "${{env.TIMESTAMP}} testresults.jtl"
-        path: .github/JMeterTestPlan/Results/
+        name: jmeter-results
+        path: .github/JMeterTestPlan/Results/${{ env.TIMESTAMP }}_testresults.jtl
