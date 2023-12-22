@@ -34,13 +34,26 @@ jobs:
     #    dotnet-version: '6.0'
     
     # Installing Jmeter to run tests
+    #- name: Install JMeter
+    #  run: |
+    #    wget -v https://downloads.apache.org//jmeter/binaries/apache-jmeter-5.6.2.tgz
+    #    tar -xzf apache-jmeter-5.6.2.tgz
+    #    echo "${PWD}/apache-jmeter-5.6.2/bin" >> $GITHUB_PATH
+
+    # Installing Jmeter to run tests
     - name: Install JMeter
       run: |
         wget -v https://downloads.apache.org//jmeter/binaries/apache-jmeter-5.6.2.tgz
-        tar -xzf apache-jmeter-5.6.2.tgz
-        echo "${PWD}/apache-jmeter-5.6.2/bin" >> $GITHUB_PATH
+        if [ $? -eq 0 ]; then
+            echo "Succesfully downloaded JMeter"
+            tar -xzf apache-jmeter-5.6.2.tgz
+            echo "${PWD}/apache-jmeter-5.6.2/bin" >> $GITHUB_PATH
+        else
+            echo "Failed to download JMeter"
+            exit 1
+        fi
 
     # Run JMeter Test
     - name: Run JMeter Test
       run: |
-        jmeter -n -t "/git/Gab-pipeline-test-branche/sourceCode/.github/JMeterTestPlan/Demo web shop Tricentis.jmx" -l testresults.jtl -e -o "/git/Gab-pipeline-test-branche/sourceCode/.github/JMeterTestPlan/Results/" -j jmeter.log
+        jmeter -n -t ".github/JMeterTestPlan/Demo web shop Tricentis.jmx" -l testresults.jtl -e -o ".github/JMeterTestPlan/Results/" -j jmeter.log
