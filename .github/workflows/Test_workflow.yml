@@ -27,6 +27,10 @@ jobs:
         distribution: 'adopt'
         java-version: '11'
 
+    # Generate TIMESTAMP
+    - name: Generate Timestamp variable
+      run: echo "TIMESTAMP=$(date +%Y%m%d-%H%M%S)" >> $GITHUB_ENV
+
     # Setup .NET if needed
     #- name: Setup .NET
     #  uses: actions/setup-dotnet@v1
@@ -60,18 +64,18 @@ jobs:
     - name: Run JMeter Test
       run: |
         TIMESTAMP=$(date +%Y%m%d-%H%M%S)
-        jmeter -n -t ".github/JMeterTestPlan/Demo web shop Tricentis.jmx" -l "${TIMESTAMP} testresults.jtl" -e -o ".github/JMeterTestPlan/Results/" -j "${TIMESTAMP} jmeter.log"
+        jmeter -n -t ".github/JMeterTestPlan/Demo web shop Tricentis.jmx" -l "${env.TIMESTAMP} testresults.jtl" -e -o ".github/JMeterTestPlan/Results/" -j "${env.TIMESTAMP} jmeter.log"
 
     # Upload JMeter logs as an artifact
     - name: Upload JMeter Logs
       uses: actions/upload-artifact@v2
       with:
-        name: "${TIMESTAMP} jmeter.log"
+        name: "${env.TIMESTAMP} jmeter.log"
         path: .github/JMeterTestPlan/Results/
 
     # Upload JMeter Test Results (.jtl file) as an artifact
     - name: Upload JMeter Test Results
       uses: actions/upload-artifact@v2
       with:
-        name: "${TIMESTAMP} testresults.jtl"
+        name: "${env.TIMESTAMP} testresults.jtl"
         path: .github/JMeterTestPlan/Results/
