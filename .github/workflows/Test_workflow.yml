@@ -31,19 +31,7 @@ jobs:
     - name: Generate Timestamp variable
       run: echo "TIMESTAMP=$(date +%Y%m%d-%H%M%S)" >> $GITHUB_ENV
 
-    # Setup .NET if needed
-    #- name: Setup .NET
-    #  uses: actions/setup-dotnet@v1
-    #  with:
-    #    dotnet-version: '6.0'
-    
-    # Installing Jmeter to run tests
-    #- name: Install JMeter
-    #  run: |
-    #    wget -v https://downloads.apache.org//jmeter/binaries/apache-jmeter-5.6.2.tgz
-    #    tar -xzf apache-jmeter-5.6.2.tgz
-    #    echo "${PWD}/apache-jmeter-5.6.2/bin" >> $GITHUB_PATH
-
+    # Makes directories that are needed for logs and reports
     - name: Create Directories for JMeter Logs and Reports
       run: |
         mkdir .github/JMeterTestPlan/Results/Logs
@@ -55,6 +43,7 @@ jobs:
     #    rm -rf .github/JMeterTestPlan/Results/*
     #    rm -rf .github/JMeterTestPlan/Results/Logs/*
     #    rm -rf .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report/*
+
 
     # Installing Jmeter to run tests
     - name: Install JMeter
@@ -73,7 +62,7 @@ jobs:
     - name: Run JMeter Test
       run: |
         jmeter -n -t ".github/JMeterTestPlan/Demo web shop Tricentis.jmx" \
-        -l .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_testresults.jtl \
+        -l .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_testresults.jtl \
         -e -o .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report \
         -j .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
     
@@ -96,13 +85,13 @@ jobs:
     - name: Upload JMeter Logs
       uses: actions/upload-artifact@v2
       with:
-        name: ${{env.TIMESTAMP}}jmeter-logs
+        name: ${{env.TIMESTAMP}}_jmeter-logs
         path: .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
 
-
+    # Upload report folder as an artifact
     - name: Upload JMeter Test Results
       uses: actions/upload-artifact@v2
       with:
-        name: ${{env.TIMESTAMP}}jmeter-results
+        name: ${{env.TIMESTAMP}}_jmeter-results
         path: .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report
       
