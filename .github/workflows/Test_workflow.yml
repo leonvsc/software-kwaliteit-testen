@@ -50,11 +50,11 @@ jobs:
         mkdir -p .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report
     
     # For some reason the newly made directories are not empty
-    - name: Clear JMeter Output Directories
-      run: | 
-        rm -rf .github/JMeterTestPlan/Results/*
-        rm -rf .github/JMeterTestPlan/Results/Logs/*
-        rm -rf .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report/*
+    #- name: Clear JMeter Output Directories
+    #  run: | 
+    #    rm -rf .github/JMeterTestPlan/Results/*
+    #    rm -rf .github/JMeterTestPlan/Results/Logs/*
+    #    rm -rf .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report/*
 
     # Installing Jmeter to run tests
     - name: Install JMeter
