@@ -63,8 +63,7 @@ jobs:
     # Run JMeter Test
     - name: Run JMeter Test
       run: |
-        jmeter -n -t ".github/JMeterTestPlan/Demo web shop Tricentis.jmx" -l ".github/JMeterTestPlan/Results/${{env.TIMESTAMP}}_testresults.jtl" -e -o ".github/JMeterTestPlan/Results" -j ".github/JMeterTestPlan/Results/${{env.TIMESTAMP}}_jmeter.log"
-
+        jmeter -n -t ".github/JMeterTestPlan/Demo web shop Tricentis.jmx" -l .github/JMeterTestPlan/Results/${{env.TIMESTAMP}}_testresults.jtl -e -o .github/JMeterTestPlan/Results -j .github/JMeterTestPlan/Results/${{env.TIMESTAMP}}_jmeter.log
     # Upload JMeter logs as an artifact
     #- name: Upload JMeter Logs
     #  uses: actions/upload-artifact@v2
@@ -84,11 +83,11 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: jmeter-logs
-        path: .github/JMeterTestPlan/Results/${{ env.TIMESTAMP }}_jmeter.log
+        path: .github/JMeterTestPlan/Results/${{env.TIMESTAMP}}_jmeter.log
 
      # Upload JMeter Test Results (.jtl file) as an artifact
     - name: Upload JMeter Test Results
       uses: actions/upload-artifact@v2
       with:
         name: jmeter-results
-        path: .github/JMeterTestPlan/Results/${{ env.TIMESTAMP }}_testresults.jtl
+        path: .github/JMeterTestPlan/Results/${{env.TIMESTAMP}}_testresults.jtl
