@@ -1,5 +1,10 @@
 name: Performance Test pipeline
 
+# Injecting credentials safely for tests
+env:
+  JMETER_USERNAME: ${{ secrets.SOAP_USERNAME }}
+  JMETER_PASSWORD: ${{ secrets.SOAP_PASSWORD }}
+
 # Controls when the workflow will run
 on:
   # Allows you to run this workflow manually from the Actions tab
@@ -51,7 +56,7 @@ jobs:
     # Run JMeter Test
     - name: Run JMeter Test
       run: |
-        jmeter -n -t ".github/JMeterTestPlan/Demo web shop Tricentis.jmx" \
+        jmeter -n -t ".github/JMeterTestPlan/Demo web shop Tricentis.jmx" -Jusername=$JMETER_USERNAME -Jpassword=$JMETER_PASSWORD \
         -l .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_testresults.jtl \
         -e -o .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report \
         -j .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
