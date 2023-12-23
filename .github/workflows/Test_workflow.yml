@@ -44,14 +44,17 @@ jobs:
     #    tar -xzf apache-jmeter-5.6.2.tgz
     #    echo "${PWD}/apache-jmeter-5.6.2/bin" >> $GITHUB_PATH
 
-    - name: Clear JMeter Output Directory
-      run: rm -rf .github/JMeterTestPlan/Results/*
-
     - name: Create Directories for JMeter Logs and Reports
       run: |
         mkdir -p .github/JMeterTestPlan/Results/Logs
         mkdir -p .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report
     
+    # For some reason the newly made directories are not empty
+    - name: Clear JMeter Output Directories
+      run: | 
+        rm -rf .github/JMeterTestPlan/Results/*
+        rm -rf .github/JMeterTestPlan/Results/Logs/*
+        rm -rf .github/JMeterTestPlan/Results/Reports/*
 
     # Installing Jmeter to run tests
     - name: Install JMeter
