@@ -2,14 +2,12 @@ name: Performance Test pipeline
 
 # Controls when the workflow will run
 on:
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
   # Triggers the workflow on push or pull request events but only for the "Gab-pipeline-test-branche" branch
   push:
-    branches: [ "Gab-pipeline-test-branche" ]
-    
+    branches: [ "Gab-pipeline-test-branche" ] 
   pull_request:
 
 jobs:
@@ -18,11 +16,11 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     # Setup Java for JMeter
     - name: Set up JDK 11
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v4
       with:
         distribution: 'adopt'
         java-version: '11'
@@ -36,14 +34,6 @@ jobs:
       run: |
         mkdir .github/JMeterTestPlan/Results/Logs
         mkdir -p .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report
-    
-    # For some reason the newly made directories are not empty
-    #- name: Clear JMeter Output Directories
-    #  run: | 
-    #    rm -rf .github/JMeterTestPlan/Results/*
-    #    rm -rf .github/JMeterTestPlan/Results/Logs/*
-    #    rm -rf .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report/*
-
 
     # Installing Jmeter to run tests
     - name: Install JMeter
@@ -65,21 +55,6 @@ jobs:
         -l .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_testresults.jtl \
         -e -o .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report \
         -j .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
-    
-    #jmeter -n -t ".github/JMeterTestPlan/Demo web shop Tricentis.jmx" -l .github/JMeterTestPlan/Results/${{env.TIMESTAMP}}_testresults.jtl -e -o .github/JMeterTestPlan/Results -j .github/JMeterTestPlan/Results/${{env.TIMESTAMP}}_jmeter.log
-    # Upload JMeter logs as an artifact
-    #- name: Upload JMeter Logs
-    #  uses: actions/upload-artifact@v2
-    #  with:
-    #    name: "${/{env.TIMESTAMP}/}/ jmeter.log"
-    #    path: .github/JMeterTestPlan/Results/
-
-    # Upload JMeter Test Results (.jtl file) as an artifact
-    #- name: Upload JMeter Test Results
-    #  uses: actions/upload-artifact@v2
-    #  with:
-    #    name: "$/{/{env.TIMESTAMP}/}/ testresults.jtl"
-    #    path: .github/JMeterTestPlan/Results/
 
     # Upload JMeter logs as an artifact
     - name: Upload JMeter Logs
