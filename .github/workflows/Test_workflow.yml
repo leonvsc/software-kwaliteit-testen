@@ -46,8 +46,8 @@ jobs:
 
     - name: Create Directories for JMeter Logs and Reports
       run: |
-        mkdir -p .github/JMeterTestPlan/Results/Logs
-        mkdir -p .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report
+        mkdir .github/JMeterTestPlan/Results/Logs
+        mkdir .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report
     
     # For some reason the newly made directories are not empty
     - name: Clear JMeter Output Directories
