@@ -1,0 +1,12 @@
+/home/leon/code/software-kwaliteit-testen/UnitTests/ClassAssignmentAvans/bin/Debug/net8.0/ClassAssignmentAvans.deps.json
+/home/leon/code/software-kwaliteit-testen/UnitTests/ClassAssignmentAvans/bin/Debug/net8.0/ClassAssignmentAvans.dll
+/home/leon/code/software-kwaliteit-testen/UnitTests/ClassAssignmentAvans/bin/Debug/net8.0/ClassAssignmentAvans.pdb
+/home/leon/code/software-kwaliteit-testen/UnitTests/ClassAssignmentAvans/obj/Debug/net8.0/ClassAssignmentAvans.GeneratedMSBuildEditorConfig.editorconfig
+/home/leon/code/software-kwaliteit-testen/UnitTests/ClassAssignmentAvans/obj/Debug/net8.0/ClassAssignmentAvans.AssemblyInfoInputs.cache
+/home/leon/code/software-kwaliteit-testen/UnitTests/ClassAssignmentAvans/obj/Debug/net8.0/ClassAssignmentAvans.AssemblyInfo.cs
+/home/leon/code/software-kwaliteit-testen/UnitTests/ClassAssignmentAvans/obj/Debug/net8.0/ClassAssignmentAvans.csproj.CoreCompileInputs.cache
+/home/leon/code/software-kwaliteit-testen/UnitTests/ClassAssignmentAvans/obj/Debug/net8.0/ClassAssignmentAvans.sourcelink.json
+/home/leon/code/software-kwaliteit-testen/UnitTests/ClassAssignmentAvans/obj/Debug/net8.0/ClassAssignmentAvans.dll
+/home/leon/code/software-kwaliteit-testen/UnitTests/ClassAssignmentAvans/obj/Debug/net8.0/refint/ClassAssignmentAvans.dll
+/home/leon/code/software-kwaliteit-testen/UnitTests/ClassAssignmentAvans/obj/Debug/net8.0/ClassAssignmentAvans.pdb
+/home/leon/code/software-kwaliteit-testen/UnitTests/ClassAssignmentAvans/obj/Debug/net8.0/ref/ClassAssignmentAvans.dll
