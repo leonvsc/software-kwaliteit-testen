@@ -115,7 +115,7 @@ jobs:
         # Optional converting Markdown to HTML (set content_type to text/html too):
         convert_markdown: true
         # Optional attachments:
-        attachments: attachments: jmeter_results_${{ env.TIMESTAMP }}.zip
+        attachments: jmeter_results_${{ env.TIMESTAMP }}.zip
         # Optional priority: 'high', 'normal' (default) or 'low'
         priority: low
 
