@@ -97,8 +97,8 @@ jobs:
         from: Test Bot <denise_bot@live.nl> # <user@example.com>
         # Optional plain body:
         body: | 
-          Build job on ${{ env.TIMESTAMP }} of ${{ github.repository }} completed successfully! \n
-          \n
+          Build job on ${{ env.TIMESTAMP }} of ${{ github.repository }} completed successfully!
+
           For more information refer to the reports and logs in the zip file in the attachment of this mail
         # Optional HTML body read from file:
         # html_body: file://README.html
@@ -115,7 +115,7 @@ jobs:
         # Optional converting Markdown to HTML (set content_type to text/html too):
         convert_markdown: true
         # Optional attachments:
-        attachments: attachments.zip,git.diff,./dist/static/*.js
+        attachments: attachments.zip,git.diff,jmeter_results_${{ env.TIMESTAMP }}.rename
         # Optional priority: 'high', 'normal' (default) or 'low'
         priority: low
 
