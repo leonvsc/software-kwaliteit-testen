@@ -125,6 +125,13 @@ jobs:
       with:
         name: ${{env.TIMESTAMP}}_jmeter-logs
         path: .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
+    
+    # Upload JMeter logs as an artifact
+    - name: Upload JMeter Logs
+      uses: actions/upload-artifact@v4
+      with:
+        name: jmeter_results_${{ env.TIMESTAMP }}
+        path: jmeter_results_${{ env.TIMESTAMP }}.rename
 
 
     # Upload report folder as an artifact
