@@ -65,7 +65,7 @@ jobs:
     # Compress JMeter Results and Logs
     - name: Compress JMeter Results and Logs
       run: |
-        zip -r jmeter_results_${{ env.TIMESTAMP }}.zip .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
+        zip -r jmeter_results_${{ env.TIMESTAMP }}.rename .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
 
     # Sends email
     - name: Send mail
@@ -115,7 +115,7 @@ jobs:
         # Optional converting Markdown to HTML (set content_type to text/html too):
         convert_markdown: true
         # Optional attachments:
-        attachments: jmeter_results_${{ env.TIMESTAMP }}.zip
+        attachments: jmeter_results_${{ env.TIMESTAMP }}.rename
         # Optional priority: 'high', 'normal' (default) or 'low'
         priority: low
 
