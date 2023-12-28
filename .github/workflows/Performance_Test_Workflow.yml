@@ -81,17 +81,17 @@ jobs:
         # Optional whether this connection use TLS (default is true if server_port is 465)
         secure: false
         # Optional (recommended) mail server username:
-        username: ${{secrets.MAIL_USERNAME}}
+        username: ${{ secrets.MAIL_USERNAME }}
         # Optional (recommended) mail server password:
-        password: ${{secrets.MAIL_PASSWORD}}
+        password: ${{ secrets.MAIL_PASSWORD }}
         # Required mail subject:
-        subject: Github Actions job result
+        subject: Performance test ${{ env.TIMESTAMP }} Github Actions job result
         # Required recipients' addresses:
         to: gabriel94xd@gmail.com,
         # Required sender full name (address can be skipped):
         from: Test Bot <denise_bot@live.nl> # <user@example.com>
         # Optional plain body:
-        body: Build job of ${{github.repository}} completed successfully!
+        body: Build job on ${{ env.TIMESTAMP }} of ${{ github.repository }} completed successfully!
         # Optional HTML body read from file:
         # html_body: file://README.html
         # Optional carbon copy recipients:
