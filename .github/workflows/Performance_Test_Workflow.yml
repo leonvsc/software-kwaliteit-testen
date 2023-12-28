@@ -62,6 +62,11 @@ jobs:
         -e -o .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report \
         -j .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
 
+    # Compress JMeter Results and Logs
+    - name: Compress JMeter Results and Logs
+      run: |
+        zip -r jmeter_results_${{ env.TIMESTAMP }}.zip .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
+
     # Sends email
     - name: Send mail
       uses: dawidd6/action-send-mail@v3.9.0
@@ -92,7 +97,8 @@ jobs:
         from: Test Bot <denise_bot@live.nl> # <user@example.com>
         # Optional plain body:
         body: | 
-          Build job on ${{ env.TIMESTAMP }} of ${{ github.repository }} completed successfully! \n \n
+          Build job on ${{ env.TIMESTAMP }} of ${{ github.repository }} completed successfully! \n
+          \n
           For more information refer to the reports and logs in the zip file in the attachment of this mail
         # Optional HTML body read from file:
         # html_body: file://README.html
@@ -109,7 +115,7 @@ jobs:
         # Optional converting Markdown to HTML (set content_type to text/html too):
         convert_markdown: true
         # Optional attachments:
-        attachments: attachments.zip,git.diff,./dist/static/*.js
+        attachments: jmeter_results_${{ env.TIMESTAMP }}.zip
         # Optional priority: 'high', 'normal' (default) or 'low'
         priority: low
 
