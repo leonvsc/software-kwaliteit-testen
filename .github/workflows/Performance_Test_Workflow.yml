@@ -65,7 +65,7 @@ jobs:
     # Compress JMeter Results and Logs
     - name: Compress JMeter Results and Logs
       run: |
-        zip -r jmeter_results_zipped_${{ env.TIMESTAMP }}.zip .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
+        zip -r jmeter_results_and_logs_zipped_${{ env.TIMESTAMP }}.zip .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
 
     # Sends email
     - name: Send mail
@@ -130,8 +130,8 @@ jobs:
     - name: Upload JMeter Logs
       uses: actions/upload-artifact@v4
       with:
-        name: jmeter_results_zipped_${{ env.TIMESTAMP }}
-        path: jmeter_results_zipped_${{ env.TIMESTAMP }}.zip
+        name: jmeter_results_and_logs_zipped_${{ env.TIMESTAMP }}
+        path: jmeter_results_and_logs_zipped_${{ env.TIMESTAMP }}.zip
 
     # Upload report folder as an artifact
     - name: Upload JMeter Test Results
