@@ -89,7 +89,7 @@ jobs:
         # Required recipients' addresses:
         to: gabriel94xd@gmail.com,
         # Required sender full name (address can be skipped):
-        from: G.v.M <gabriel94xd@gmail.com> # <user@example.com>
+        from: gabriel94xd@gmail.com # <user@example.com>
         # Optional plain body:
         body: Build job of ${{github.repository}} completed successfully!
         # Optional HTML body read from file:
