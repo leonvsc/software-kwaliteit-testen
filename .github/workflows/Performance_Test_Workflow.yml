@@ -91,7 +91,9 @@ jobs:
         # Required sender full name (address can be skipped):
         from: Test Bot <denise_bot@live.nl> # <user@example.com>
         # Optional plain body:
-        body: Build job on ${{ env.TIMESTAMP }} of ${{ github.repository }} completed successfully!
+        body: | 
+          Build job on ${{ env.TIMESTAMP }} of ${{ github.repository }} completed successfully! \n \n
+          For more information refer to the reports and logs in the zip file in the attachment of this mail
         # Optional HTML body read from file:
         # html_body: file://README.html
         # Optional carbon copy recipients:
