@@ -160,7 +160,7 @@
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">jtlFile</stringProp>
+          <stringProp name="filename">${jtlFile}</stringProp>
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="AssertionVisualizer" testclass="ResultCollector" testname="Assertion Results" enabled="true">
@@ -197,7 +197,7 @@
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">jtlFile</stringProp>
+          <stringProp name="filename">${jtlFile}</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
