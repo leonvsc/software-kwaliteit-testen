@@ -101,12 +101,12 @@
             <stringProp name="TestPlan.comments">SOAPAction</stringProp>
           </HeaderManager>
           <hashTree/>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="SLA - response time &gt;= 0.2 warning" enabled="true">
-            <stringProp name="DurationAssertion.duration">200</stringProp>
-          </DurationAssertion>
-          <hashTree/>
           <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="SLA - response time &gt;= 0.3 failure" enabled="true">
             <stringProp name="DurationAssertion.duration">300</stringProp>
+          </DurationAssertion>
+          <hashTree/>
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="SLA - response time &gt;= 0.2 warning" enabled="true">
+            <stringProp name="DurationAssertion.duration">200</stringProp>
           </DurationAssertion>
           <hashTree/>
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
