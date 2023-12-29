@@ -38,6 +38,11 @@
               <stringProp name="Argument.value">${__P(password)}</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
+            <elementProp name="jtlFile" elementType="Argument">
+              <stringProp name="Argument.name">jtlFile</stringProp>
+              <stringProp name="Argument.value">${__P(jtlFile, default.jtl)}</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
           </collectionProp>
         </Arguments>
         <hashTree/>
@@ -155,7 +160,7 @@
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename"></stringProp>
+          <stringProp name="filename">${jtlFile}</stringProp>
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="AssertionVisualizer" testclass="ResultCollector" testname="Assertion Results" enabled="true">
@@ -192,7 +197,7 @@
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename"></stringProp>
+          <stringProp name="filename">${jtlFile}</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
