@@ -126,44 +126,8 @@
           <stringProp name="ActionProcessor.duration">20000</stringProp>
         </TestAction>
         <hashTree/>
-        <!-- Original settings <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
-          <boolProp name="ResultCollector.error_logging">true</boolProp>
-          <objProp>
-            <name>saveConfig</name>
-            <value class="SampleSaveConfiguration">
-              <time>true</time>
-              <latency>true</latency>
-              <timestamp>true</timestamp>
-              <success>true</success>
-              <label>true</label>
-              <code>true</code>
-              <message>true</message>
-              <threadName>true</threadName>
-              <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
-              <fieldNames>true</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
-              <responseDataOnError>false</responseDataOnError>
-              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-              <assertionsResultsToSave>0</assertionsResultsToSave>
-              <bytes>true</bytes>
-              <sentBytes>true</sentBytes>
-              <url>true</url>
-              <threadCounts>true</threadCounts>
-              <idleTime>true</idleTime>
-              <connectTime>true</connectTime>
-            </value>
-          </objProp>
-          <stringProp name="filename">${jtlFile}</stringProp>
-        </ResultCollector> -->
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
-          <boolProp name="ResultCollector.error_logging">true</boolProp>
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
             <value class="SampleSaveConfiguration">
@@ -181,12 +145,13 @@
               <subresults>true</subresults>
               <responseData>true</responseData>
               <samplerData>true</samplerData>
-              <xml>false</xml>
+              <xml>true</xml>
               <fieldNames>true</fieldNames>
               <responseHeaders>true</responseHeaders>
               <requestHeaders>true</requestHeaders>
               <responseDataOnError>true</responseDataOnError>
               <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
               <bytes>true</bytes>
               <sentBytes>true</sentBytes>
               <url>true</url>
@@ -198,44 +163,8 @@
           <stringProp name="filename">${jtlFile}</stringProp>
         </ResultCollector>
         <hashTree/>
-        <!-- Original settings <ResultCollector guiclass="AssertionVisualizer" testclass="ResultCollector" testname="Assertion Results" enabled="true">
-          <boolProp name="ResultCollector.error_logging">true</boolProp>
-          <objProp>
-            <name>saveConfig</name>
-            <value class="SampleSaveConfiguration">
-              <time>true</time>
-              <latency>true</latency>
-              <timestamp>true</timestamp>
-              <success>true</success>
-              <label>true</label>
-              <code>true</code>
-              <message>true</message>
-              <threadName>true</threadName>
-              <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
-              <responseData>false</responseData>
-              <samplerData>false</samplerData>
-              <xml>false</xml>
-              <fieldNames>true</fieldNames>
-              <responseHeaders>false</responseHeaders>
-              <requestHeaders>false</requestHeaders>
-              <responseDataOnError>false</responseDataOnError>
-              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-              <assertionsResultsToSave>0</assertionsResultsToSave>
-              <bytes>true</bytes>
-              <sentBytes>true</sentBytes>
-              <url>true</url>
-              <threadCounts>true</threadCounts>
-              <idleTime>true</idleTime>
-              <connectTime>true</connectTime>
-            </value>
-          </objProp>
-          <stringProp name="filename">${jtlFile}</stringProp>
-        </ResultCollector> -->
         <ResultCollector guiclass="AssertionVisualizer" testclass="ResultCollector" testname="Assertion Results" enabled="true">
-          <boolProp name="ResultCollector.error_logging">true</boolProp>
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
             <value class="SampleSaveConfiguration">
@@ -253,12 +182,13 @@
               <subresults>true</subresults>
               <responseData>true</responseData>
               <samplerData>true</samplerData>
-              <xml>false</xml>
+              <xml>true</xml>
               <fieldNames>true</fieldNames>
               <responseHeaders>true</responseHeaders>
               <requestHeaders>true</requestHeaders>
               <responseDataOnError>true</responseDataOnError>
               <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
               <bytes>true</bytes>
               <sentBytes>true</sentBytes>
               <url>true</url>
