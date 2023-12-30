@@ -68,6 +68,7 @@ jobs:
 
     # Check the success or failure of the test even when another step might fail after the jmeter test
     - name: Set test result message
+      if: always()
       run: |
         if [ $? -eq 0 ]; then
           echo "TEST_RESULT=The JMeter test executed successfully!" >> $GITHUB_ENV
