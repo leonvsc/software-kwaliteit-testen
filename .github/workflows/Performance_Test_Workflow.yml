@@ -65,7 +65,7 @@ jobs:
     # Compress JMeter Results and Logs
     - name: Compress JMeter Results and Logs
       run: |
-        zip -r jmeter_results_and_logs_zipped_${{ env.TIMESTAMP }}.zip .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
+        zip -r jmeter_reports_and_logs_zipped_${{ env.TIMESTAMP }}.zip .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
 
     # Sends email
     - name: Send mail
