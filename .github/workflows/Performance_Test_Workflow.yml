@@ -60,12 +60,21 @@ jobs:
         jmeter -n -t ".github/JMeterTestPlan/Demo web shop Tricentis.jmx" -JjtlFile=.github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_testresults.jtl -Jusername=$JMETER_USERNAME -Jpassword=$JMETER_PASSWORD \
         -l .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_testresults.jtl \
         -e -o .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report \
-        -j .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
+        -j .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log || echo "JMeter test failed" && exit 1
+
+    # Check the success or failure of the test
+    - name: Set test result message
+      run: |
+        if [ $? -eq 0 ]; then
+          echo "TEST_RESULT=The JMeter test executed successfully." >> $GITHUB_ENV
+        else
+          echo "TEST_RESULT=The JMeter test failed." >> $GITHUB_ENV
+        fi
 
     # Compress JMeter Results and Logs
     - name: Compress JMeter Results and Logs
       run: |
-        zip -r jmeter_reports_and_logs_zipped_${{ env.TIMESTAMP }}.zip .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
+        zip -r jmeter_reports_and_logs_zipped_${{ env.TIMESTAMP }}.zip .github/JMeterTestPlan/Results/Report/${{ env.TIMESTAMP }}_Report .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
 
     # Sends email
     - name: Send mail
@@ -99,7 +108,9 @@ jobs:
         body: | 
           Build job on ${{ env.TIMESTAMP }} of ${{ github.repository }} completed successfully!
           
-          For more information refer to the reports and logs in the zip file in the attachment of this mail
+          ${{ env.TEST_RESULT }}
+
+          For more information refer to the reports and logs of this run on github.
         # Optional HTML body read from file:
         # html_body: file://README.html
         # Optional carbon copy recipients:
