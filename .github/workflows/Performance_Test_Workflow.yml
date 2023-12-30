@@ -67,9 +67,11 @@ jobs:
       if: always()
       run: |
         if [ ${{ job.status }} == 'success' ]; then
-          echo "TEST_RESULT=The JMeter test executed successfully!" >> $GITHUB_ENV
+          echo "TEST_RESULT=the JMeter test executed successfully!" >> $GITHUB_ENV
+          echo "TEST_RESULT_SUBJECT=SUCCESFUL:" >> $GITHUB_ENV
         else
-          echo "TEST_RESULT=The JMeter test failed." >> $GITHUB_ENV
+          echo "TEST_RESULT=the JMeter test failed." >> $GITHUB_ENV
+          echo "TEST_RESULT_SUBJECT=FAILED:" >> $GITHUB_ENV
         fi
 
     # Compress JMeter Results and Logs
@@ -101,7 +103,7 @@ jobs:
         # Optional (recommended) mail server password:
         password: ${{ secrets.MAIL_PASSWORD }}
         # Required mail subject:
-        subject: Performance test ${{ env.TIMESTAMP }} Github Actions job result
+        subject: ${{env.TEST_RESULT_SUBJECT}} Performance test ${{ env.TIMESTAMP }} Github Actions job result
         # Required recipients' addresses:
         to: gabriel94xd@gmail.com,
         # Required sender full name (address can be skipped):
