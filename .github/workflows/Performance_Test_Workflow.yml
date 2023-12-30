@@ -57,10 +57,14 @@ jobs:
     # testing
     - name: Run JMeter Test
       run: |
+        if [ $? -eq 0 ]; then
         jmeter -n -t ".github/JMeterTestPlan/Demo web shop Tricentis.jmx" -JjtlFile=.github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_testresults.jtl -Jusername=$JMETER_USERNAME -Jpassword=$JMETER_PASSWORD \
         -l .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_testresults.jtl \
         -e -o .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report \
-        -j .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log || echo "JMeter test failed" && exit 1
+        -j .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
+        else
+            echo "JMeter test failed" && exit 1
+        fi
 
     # Check the success or failure of the test
     - name: Set test result message
