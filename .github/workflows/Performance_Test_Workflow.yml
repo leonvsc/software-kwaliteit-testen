@@ -68,10 +68,9 @@ jobs:
 
     # Check the success or failure of the test even when another step might fail after the jmeter test
     - name: Set test result message
-      if: always()
       run: |
         if [ $? -eq 0 ]; then
-          echo "TEST_RESULT=The JMeter test executed successfully." >> $GITHUB_ENV
+          echo "TEST_RESULT=The JMeter test executed successfully!" >> $GITHUB_ENV
         else
           echo "TEST_RESULT=The JMeter test failed." >> $GITHUB_ENV
         fi
@@ -112,9 +111,7 @@ jobs:
         from: Test Bot <denise_bot@live.nl> # <user@example.com>
         # Optional plain body:
         body: | 
-          Build job on ${{ env.TIMESTAMP }} of ${{ github.repository }} completed successfully!
-          
-          ${{ env.TEST_RESULT }}
+          Build job on ${{ env.TIMESTAMP }} of ${{ github.repository }} ${{env.TEST_RESULT}}
 
           For more information refer to the reports and logs of this run on github.
         # Optional HTML body read from file:
@@ -138,6 +135,7 @@ jobs:
 
     # Upload JMeter logs as an artifact
     - name: Upload JMeter Logs
+      if: always()
       uses: actions/upload-artifact@v4
       with:
         name: ${{env.TIMESTAMP}}_jmeter-logs
