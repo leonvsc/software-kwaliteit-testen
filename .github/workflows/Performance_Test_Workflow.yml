@@ -37,7 +37,7 @@ jobs:
     # Makes directories that are needed for logs and reports
     - name: Create Directories for JMeter Logs and Reports
       run: |
-        mkdir .github/JMeterTestPlan/Results/Logs
+        mkdir -p .github/JMeterTestPlan/Results/Logs
         mkdir -p .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report
 
     # Installing Jmeter to run tests
