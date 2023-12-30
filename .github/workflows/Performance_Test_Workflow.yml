@@ -68,7 +68,7 @@ jobs:
       run: |
         if [ ${{ job.status }} == 'success' ]; then
           echo "TEST_RESULT=JMeter test executed successfully!" >> $GITHUB_ENV
-          echo "TEST_RESULT_SUBJECT=SUCCESFUL:" >> $GITHUB_ENV
+          echo "TEST_RESULT_SUBJECT=SUCCESSFUL:" >> $GITHUB_ENV
         else
           echo "TEST_RESULT=JMeter test failed." >> $GITHUB_ENV
           echo "TEST_RESULT_SUBJECT=FAILED:" >> $GITHUB_ENV
