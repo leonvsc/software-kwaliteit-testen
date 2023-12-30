@@ -49,7 +49,7 @@ jobs:
             tar -xzf apache-jmeter-5.6.2.tgz
             echo "${PWD}/apache-jmeter-5.6.2/bin" >> $GITHUB_PATH
         else
-            echo "Failed to download JMeter"
+            echo "Failed to download and/or install JMeter"
             exit 1
         fi
 
@@ -66,8 +66,9 @@ jobs:
             echo "JMeter test failed" && exit 1
         fi
 
-    # Check the success or failure of the test
+    # Check the success or failure of the test even when another step might fail after the jmeter test
     - name: Set test result message
+      if: always()
       run: |
         if [ $? -eq 0 ]; then
           echo "TEST_RESULT=The JMeter test executed successfully." >> $GITHUB_ENV
@@ -82,6 +83,7 @@ jobs:
 
     # Sends email
     - name: Send mail
+      if: always()
       uses: dawidd6/action-send-mail@v3.9.0
       with:
         # Specify connection via URL (replaces server_address, server_port, secure,
