@@ -111,6 +111,8 @@ jobs:
         # Optional plain body:
         body: | 
           Build job on ${{ env.TIMESTAMP }} of ${{ github.repository }} ${{env.TEST_RESULT}}
+          
+          <div style="padding-top:56.250%;position:relative;"><iframe src=".github/workflows/img/failed_test.gif" width="100%" height="100%" style='position:absolute;top:0;left:0;' frameBorder="0" allowFullScreen></iframe></div><p><a href="https://gifer.com"></a></p>
 
           For more information refer to the reports and logs of this run on github.
         # Optional HTML body read from file:
