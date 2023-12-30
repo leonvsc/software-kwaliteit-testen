@@ -121,8 +121,8 @@ jobs:
         html_body: |
           Build job on ${{ env.TIMESTAMP }} of ${{ github.repository }} ${{env.TEST_RESULT}}
           
-          <div style="padding-top:56.250%;position:relative;">
-            <img src="https://i.gifer.com/P4Y.gif" alt="GIF Description" style="width:100%;height:auto;position:absolute;top:0;left:0;">
+          <div style="padding-top:28.125%;position:relative;">
+            <img src="https://i.gifer.com/P4Y.gif" alt="GIF Description" style="width:100%;height:auto;position:absolute;top:0;left:0;" frameBorder="0">
           </div>
           
           <p><a href="https://gifer.com">via GIFER</a></p>
