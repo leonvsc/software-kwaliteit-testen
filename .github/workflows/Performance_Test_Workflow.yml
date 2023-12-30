@@ -129,7 +129,7 @@ jobs:
         # Optional unsigned/invalid certificates allowance:
         # ignore_cert: true
         # Optional converting Markdown to HTML (set content_type to text/html too):
-        convert_markdown: false
+        convert_markdown: true
         # Optional attachments:
         attachments:
         # Optional priority: 'high', 'normal' (default) or 'low'
