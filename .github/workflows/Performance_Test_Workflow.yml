@@ -4,6 +4,8 @@ name: Performance Test pipeline
 env:
   JMETER_USERNAME: ${{ secrets.SOAP_USERNAME }}
   JMETER_PASSWORD: ${{ secrets.SOAP_PASSWORD }}
+  SUCCESS_GIF: 'https://media.giphy.com/media/3o7WTL4qQCbbLLV2Pm/giphy.gif'
+  FAILURE_GIF: 'https://i.gifer.com/P4Y.gif'
 
 # Controls when the workflow will run
 on:
@@ -118,13 +120,13 @@ jobs:
         # Optional HTML body read from file:
         # html_body: file://README.html
         # <iframe src="https://i.gifer.com/P4Y.gif" width="100%" height="100%" style='position:absolute;top:0;left:0;' frameBorder="0" allowFullScreen></iframe>
+        # <img src="https://i.gifer.com/P4Y.gif" alt="GIF Description" style="width:100%;height:auto;position:absolute;top:0;left:0;">
         html_body: |
           <h2>Build job on ${{ env.TIMESTAMP }} of ${{ github.repository }} ${{env.TEST_RESULT}}</h2>
           
           <div style="padding-top:7.035%;position:relative;">
-            <img src="https://i.gifer.com/P4Y.gif" alt="GIF Description" style="width:100%;height:auto;position:absolute;top:0;left:0;">
+          <img src="${{ (env.TEST_RESULT_SUBJECT == 'FAILED:') && env.FAILURE_GIF || env.SUCCESS_GIF }}" alt="Test Result" style="width:100%;height:auto;position:absolute;top:0;left:0;">
           </div>
-          <p><a href="https://gifer.com">via GIFER</a></p>
 
           For more information refer to the reports and logs of this run on github or in the attachment.
         # Optional carbon copy recipients:
