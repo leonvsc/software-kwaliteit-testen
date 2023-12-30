@@ -57,20 +57,16 @@ jobs:
     # testing
     - name: Run JMeter Test
       run: |
-        if [ $? -eq 0 ]; then
-            jmeter -n -t ".githu/JMeterTestPlan/Demo web shop Tricentis.jmx" -JjtlFile=.github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_testresults.jtl -Jusername=$JMETER_USERNAME -Jpassword=$JMETER_PASSWORD \
-            -l .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_testresults.jtl \
-            -e -o .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report \
-            -j .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
-        else
-            echo "JMeter test failed" && exit 1
-        fi
+        jmeter -n -t ".githu/JMeterTestPlan/Demo web shop Tricentis.jmx" -JjtlFile=.github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_testresults.jtl -Jusername=$JMETER_USERNAME -Jpassword=$JMETER_PASSWORD \
+        -l .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_testresults.jtl \
+        -e -o .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report \
+        -j .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log || echo "JMeter test failed" && exit 1
 
     # Check the success or failure of the test even when another step might fail after the jmeter test
     - name: Set test result message
       if: always()
       run: |
-        if [ $? -eq 0 ]; then
+        if [ ${{ job.status }} == 'success' ]; then
           echo "TEST_RESULT=The JMeter test executed successfully!" >> $GITHUB_ENV
         else
           echo "TEST_RESULT=The JMeter test failed." >> $GITHUB_ENV
