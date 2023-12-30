@@ -127,11 +127,11 @@ jobs:
         path: .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
     
     # Upload JMeter logs and report zipped as an artifact
-    - name: Upload JMeter Logs
+    - name: Upload JMeter zipped Logs and reports
       uses: actions/upload-artifact@v4
       with:
-        name: jmeter_results_and_logs_zipped_${{ env.TIMESTAMP }}
-        path: jmeter_results_and_logs_zipped_${{ env.TIMESTAMP }}.zip
+        name: jmeter_reports_and_logs_zipped_${{ env.TIMESTAMP }}
+        path: jmeter_reports_and_logs_zipped_${{ env.TIMESTAMP }}.zip
 
     # Upload report folder as an artifact
     - name: Upload JMeter Test Results
