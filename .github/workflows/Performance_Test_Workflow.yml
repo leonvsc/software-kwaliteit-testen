@@ -121,7 +121,7 @@ jobs:
           Build job on ${{ env.TIMESTAMP }} of ${{ github.repository }} ${{env.TEST_RESULT}}
           
           <div style="padding-top:56.250%;position:relative;">
-            <iframe src="https://gifer.com/embed/P4Y" width="100%" height="100%" style='position:absolute;top:0;left:0;' frameBorder="0" allowFullScreen></iframe>
+            <iframe src="https://i.gifer.com/P4Y.gif" width="100%" height="100%" style='position:absolute;top:0;left:0;' frameBorder="0" allowFullScreen></iframe>
             <img src="https://email2go.io/img/blog/using-animated-gif-in-html-emails/animated-gif.gif" alt="GIF Description" style="width:100%;height:auto;">
           </div>
           
