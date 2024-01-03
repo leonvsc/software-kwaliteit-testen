@@ -14,23 +14,26 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      - name: navigate to correct directory
+        run: |
+          cd soaptests
+
       - name: Download and Run SoapUI Tests
         run: |
           docker run -i --rm \
-          -v soaptests:/opt/soapui/projects \
-          -v soaptests:/opt/soapui/projects/testresult \
+          -v .:/opt/soapui/projects \
+          -v tests:/opt/soapui/projects/testresult \
           lukastosic/docker-soapui \
           -s "Log in testing" \
           -r -j \
           -f /opt/soapui/projects/testresult \
-          -I "/opt/soapui/projects/Soap-try-soapui-project.xml" > soaptests/tests/testOutput.txt
+          -I "/opt/soapui/projects/Soap-try-soapui-project.xml" > tests/testOutput.txt
 
       - name: verify there are no test failures
-        run: | 
-          if grep -q "(0 failed)" soaptests/tests/testOutput.txt
+        run: |
+          if grep -q "(0 failed)" tests/testOutput.txt
           then echo "Success: No test failures" 
           else
           echo "Error: there are test failures, check tests/testOutput.txt for more information"
           exit 1 
           fi
-          
