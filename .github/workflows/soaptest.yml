@@ -17,8 +17,8 @@ jobs:
       - name: Download and Run SoapUI Tests
         run: |
           docker run -i --rm \
-          -v .soaptests:/opt/soapui/projects \
-          -v .soaptests/tests:/opt/soapui/projects/testresult \
+          -v soaptests:/opt/soapui/projects \
+          -v soaptests:/opt/soapui/projects/testresult \
           lukastosic/docker-soapui \
           -s "Log in testing" \
           -r -j \
