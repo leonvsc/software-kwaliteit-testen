@@ -14,10 +14,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: navigate to correct directory
-        run: |
-          cd soaptests
-
       - name: Download and Run SoapUI Tests
         run: |
           docker run -i --rm \
