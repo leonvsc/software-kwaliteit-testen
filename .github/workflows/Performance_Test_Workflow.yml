@@ -81,7 +81,7 @@ jobs:
     # Install Groovy
     - name: Install Groovy
       run: |
-        wget https://groovy.jfrog.io/ui/native/dist-release-local/groovy-zips/apache-groovy-binary-4.0.12.zip
+        wget https://groovy.jfrog.io/artifactory/dist-release-local/groovy-zips/apache-groovy-binary-4.0.12.zip
         if [ $? -eq 0 ]; then
             echo "Succesfully downloaded groovy"
             sudo unzip apache-groovy-binary-4.0.12.zip -d .apache-groovy-binary-4.0.12
