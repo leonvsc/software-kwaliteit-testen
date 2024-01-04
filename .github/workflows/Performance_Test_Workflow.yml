@@ -79,7 +79,7 @@ jobs:
     # Run Groovy Script to Generate Summary Report
     - name: Generate Summary Report
       run: |
-        groovy /git/Gab-pipeline-test-branche/sourceCode/.github/Scripts/performance-summary-script.groovy
+        groovy .github/Scripts/performance-summary-script.groovy
 
     # Check the success or failure of the test even when another step might fail after the jmeter test
     - name: Set test result message
