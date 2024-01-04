@@ -52,17 +52,12 @@ jtlFile.eachLine { line ->
 // Create XML content
 def writer = new StringWriter()
 def xml = new MarkupBuilder(writer)
-xml.summaryReport {
-    summary.each { label, data ->
-        requestsData.each { request ->
-            request {
-                request.each { key, value ->
-                    "$key"(value ?: 'None')
-                }
-            }
-        }
+xml.requests {
+    request.each { key, value ->
+        "$key"(value ?: 'None')
     }
 }
+
 
 // Save the XML content to a file
 new File(outputXmlPath).withWriter('UTF-8') { fileWriter ->
