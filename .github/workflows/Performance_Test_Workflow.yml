@@ -59,7 +59,7 @@ jobs:
     - name: Install Groovy
       run: |
         sudo apt-get update
-        sudo sdk install groovy
+        sudo apt-get -y install groovy=4.0.17
         if [ $? -eq 0 ]; then
             echo "Succesfully installed groovy sdk"
         else
