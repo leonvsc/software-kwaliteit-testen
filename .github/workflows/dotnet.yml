@@ -33,7 +33,7 @@ jobs:
     - name: ReportGenerator
       uses: danielpalme/ReportGenerator-GitHub-Action@5.2.0
       with:
-        reports: cobertura.xml
+        reports: software-kwaliteit-testen/cobertura.xml
         targetdir: coveragereport
         
     - name: Upload coverage report artifact
