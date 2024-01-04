@@ -63,11 +63,34 @@ def writer = new StringWriter()
 def xml = new MarkupBuilder(writer)
 xml.summaryReport {
     summary.each { label, data ->
-        requestSummary {
-            label(label)
-            totalRequests(data.totalRequests)
-            averageResponseTime("${data.totalResponseTime / data.totalRequests} ms")
-            warningsCount(data.warningCount)
+        'requestSummary'(label: label) {
+            'totalRequests'(data.totalRequests)
+            'averageResponseTime'("${data.totalResponseTime / data.totalRequests} ms")
+            'warningsCount'(data.warningCount)
+        }
+    }
+    'detailedRequests' {
+        requestData.each { request ->
+            'request' {
+                'timeStamp'(request.timeStamp)
+                'elapsed'(request.elapsed)
+                'label'(request.label)
+                'responseCode'(request.responseCode)
+                'responseMessage'(request.responseMessage)
+                'threadName'(request.threadName)
+                'dataType'(request.dataType)
+                'success'(request.success)
+                'failureMessage'(request.failureMessage ?: 'None')
+                'bytes'(request.bytes)
+                'sentBytes'(request.sentBytes)
+                'grpThreads'(request.grpThreads)
+                'allThreads'(request.allThreads)
+                'URL'(request.URL ?: 'None')
+                'latency'(request.latency)
+                'idleTime'(request.idleTime)
+                'connect'(request.connect ?: 'None')
+                'warning'(request.warning)
+            }
         }
     }
     detailedRequests {
