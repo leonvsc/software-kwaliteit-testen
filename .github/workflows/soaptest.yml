@@ -25,6 +25,10 @@ jobs:
           -f /opt/soapui/projects/testresult \
           -I "/opt/soapui/projects/Soap-try-soapui-project.xml" > tests/testOutput.txt
 
+      - name: Test results
+        run: |
+          cat tests/testOutput.txt
+
       - name: verify there are no test failures
         run: |
           if grep -q "(0 failed)" tests/testOutput.txt
