@@ -21,6 +21,7 @@ jtlFile.eachLine { line ->
         def requestInfo = [
             timeStamp: parts[0],
             elapsed: parts[1],
+            label: parts[2],
             responseCode: parts[3],
             responseMessage: parts[4],
             threadName: parts[5],
@@ -45,9 +46,11 @@ def writer = new StringWriter()
 def xml = new MarkupBuilder(writer)
 xml.summaryReport {
     requestData.each { label, requestInfo ->
-        request(label: label) {
+        request(label: requestInfo.label) { // Add label attribute to request tag
             requestInfo.each { key, value ->
-                "$key"(value ?: 'None')
+            if (key != 'label') {
+                    "$key"(value ?: 'None')
+                }
             }
         }
     }
