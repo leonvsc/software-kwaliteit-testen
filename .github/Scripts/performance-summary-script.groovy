@@ -1,7 +1,8 @@
 import groovy.xml.MarkupBuilder
+
 String timestamp = System.env.TIMESTAMP
 String jtlFilePath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_testresults.jtl"
-String outputXmlPath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_summary_report.xml" // Path to output XML file
+String outputXmlPath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_summary_report.xml"
 
 // Define the warning threshold in milliseconds
 int warningThreshold = 200
@@ -13,36 +14,31 @@ if (!jtlFile.exists()) {
     return
 }
 
-// Define a map to hold the summary data
+// Define a map for aggregated summary data and a list for individual request data
 Map<String, Map<String, Object>> summary = [:]
+List<Map<String, Object>> requestData = []
 
 // Process each line in the JTL file
 jtlFile.eachLine { line ->
     if (!line.startsWith("timeStamp")) { // Skip the header line
         def parts = line.split(',')
-        def label = parts[2]
         def responseTime = Integer.parseInt(parts[1])
-
-
-
-        // Initialize data structure for each label
-        if (!summary.containsKey(label)) {
-            summary[label] = [totalRequests: 0, totalResponseTime: 0, warningCount: 0]
-        }
+        def label = parts[2]
+        def warning = responseTime > warningThreshold
 
         // Update summary data
+        summary[label] = summary.getOrDefault(label, [totalRequests: 0, totalResponseTime: 0, warningCount: 0])
         summary[label].totalRequests++
         summary[label].totalResponseTime += responseTime
-
-        // Check if response time exceeds the warning threshold
-        if (responseTime > warningThreshold) {
+        if (warning) {
             summary[label].warningCount++
         }
 
+        // Store individual request data
         def entry = [
             timeStamp: parts[0],
             elapsed: responseTime,
-            label: parts[2],
+            label: label,
             responseCode: parts[3],
             responseMessage: parts[4],
             threadName: parts[5],
@@ -59,7 +55,7 @@ jtlFile.eachLine { line ->
             connect: parts[16],
             warning: warning
         ]
-        summary << entry
+        requestData << entry
     }
 }
 
@@ -68,29 +64,34 @@ def writer = new StringWriter()
 def xml = new MarkupBuilder(writer)
 xml.summaryReport {
     summary.each { label, data ->
-        request(label: label) {
+        requestSummary(label: label) {
             totalRequests(data.totalRequests)
             averageResponseTime("${data.totalResponseTime / data.totalRequests} ms")
             warningsCount(data.warningCount)
-            
-            timeStamp(request.timeStamp)
-            elapsed(request.elapsed)
-            label(request.label)
-            responseCode(request.responseCode)
-            responseMessage(request.responseMessage)
-            threadName(request.threadName)
-            dataType(request.dataType)
-            success(request.success)
-            failureMessage(request.failureMessage ?: 'None')
-            bytes(request.bytes)
-            sentBytes(request.sentBytes)
-            grpThreads(request.grpThreads)
-            allThreads(request.allThreads)
-            URL(request.URL ?: 'None')
-            latency(request.latency)
-            idleTime(request.idleTime)
-            connect(request.connect ?: 'None')
-            warning(request.warning)
+        }
+    }
+    detailedRequests {
+        requestData.each { request ->
+            request {
+                timeStamp(request.timeStamp)
+                elapsed(request.elapsed)
+                label(request.label)
+                responseCode(request.responseCode)
+                responseMessage(request.responseMessage)
+                threadName(request.threadName)
+                dataType(request.dataType)
+                success(request.success)
+                failureMessage(request.failureMessage ?: 'None')
+                bytes(request.bytes)
+                sentBytes(request.sentBytes)
+                grpThreads(request.grpThreads)
+                allThreads(request.allThreads)
+                URL(request.URL ?: 'None')
+                latency(request.latency)
+                idleTime(request.idleTime)
+                connect(request.connect ?: 'None')
+                warning(request.warning)
+            }
         }
     }
 }
