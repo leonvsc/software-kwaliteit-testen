@@ -12,20 +12,13 @@ if (!jtlFile.exists()) {
 }
 
 List<Map<String, String>> requestData = []
-Map<String, Map<String, Integer>> summary = [:]
 
 // Process each line in the JTL file
 jtlFile.eachLine { line ->
     if (!line.startsWith("timeStamp")) {
         def parts = line.split(',')
-
-        // Aggregate data for total response time, warnings and total requests
-        summary = summary.getOrDefault([totalResponseTime: 0, totalWarnings: 0, totalRequests: 0])
-        summary.totalResponseTime += elapsed
-        if (elapsed > 200 && elapsed < 300) {
-            summary.totalWarnings++
-        }
-        summary.totalRequests++
+        def elapsed = Integer.parseInt(parts[1])
+        def warningCount = elapsed > warningThreshold ? 1 : 0
 
         def requestInfo = [
             timeStamp: parts[0],
@@ -45,6 +38,9 @@ jtlFile.eachLine { line ->
             latency: parts[14],
             idleTime: parts[15],
             connect: parts[16]
+            totalResponseTime: elapsed,
+            totalWarnings: warningCount,
+            totalRequests: 1  // Each line is one request
         ]
         requestData << requestInfo
     }
@@ -57,17 +53,15 @@ xml.summaryReport {
     requestData.each { requestInfo ->
         request(label: requestInfo.label) { // Add label attribute to request tag
             requestInfo.each { key, value ->
-            if (key != 'label') {
+            if (!['label', 'totalResponseTime', 'totalWarnings', 'totalRequests'].contains(key)) {
                     "$key"(value ?: 'None')
                 }
             }
         }
-    }
-    summarized {
-        summary.each { data ->
-            totalRequests(data.totalRequests)
-            averageResponseTime("${data.totalResponseTime / data.totalRequests} ms")
-            warningsCount(data.warningCount)
+        summarized {
+            totalResponseTime: requestInfo.totalResponseTime, 
+            totalWarnings: requestInfo.totalWarnings, 
+            totalRequests: requestInfo.totalRequests
         }
     }
 }
