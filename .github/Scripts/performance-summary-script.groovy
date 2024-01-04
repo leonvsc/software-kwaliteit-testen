@@ -1,11 +1,8 @@
 import groovy.xml.MarkupBuilder
 
-String timestamp = System.getenv('TIMESTAMP')
+String timestamp = System.env.TIMESTAMP
 String jtlFilePath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_testresults.jtl"
-String outputXmlPath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_summary_report.xml"
-
-// Define the warning threshold in milliseconds
-int warningThreshold = 200
+String outputXmlPath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_summary_report.xml" // Path to output XML file
 
 // Open the JTL file
 def jtlFile = new File(jtlFilePath)
@@ -14,16 +11,12 @@ if (!jtlFile.exists()) {
     return
 }
 
-// Define a list to store each request's data
-List<Map<String, Object>> requestsData = []
+List<Map<String, String>> requestData = []
 
 // Process each line in the JTL file
 jtlFile.eachLine { line ->
     if (!line.startsWith("timeStamp")) {
         def parts = line.split(',')
-        def responseTime = Integer.parseInt(parts[1])
-        def warning = responseTime > warningThreshold
-
         def request = [
             timeStamp: parts[0],
             elapsed: parts[1],
@@ -41,23 +34,21 @@ jtlFile.eachLine { line ->
             URL: parts[13],
             latency: parts[14],
             idleTime: parts[15],
-            connect: parts[16],
-            warning: warning
+            connect: parts[16]
         ]
-
-        requestsData << request
+        requestData << request
     }
 }
 
 // Create XML content
 def writer = new StringWriter()
 def xml = new MarkupBuilder(writer)
-xml.summaryReport {
-    summary.each { label, data ->
-        request(label: label) {
-            totalRequests(data.totalRequests)
-            averageResponseTime("${data.totalResponseTime / data.totalRequests} ms")
-            warningsCount(data.warningCount)
+xml.requests {
+    requestData.each { request ->
+        request {
+            request.each { key, value ->
+                "$key"(value ?: 'None')
+            }
         }
     }
 }
@@ -67,4 +58,4 @@ new File(outputXmlPath).withWriter('UTF-8') { fileWriter ->
     fileWriter.write(writer.toString())
 }
 
-println "Summary report written to: $outputXmlPath"
+println "XML report written to: $outputXmlPath"
