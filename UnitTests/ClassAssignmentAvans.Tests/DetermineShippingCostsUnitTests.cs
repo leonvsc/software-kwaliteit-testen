@@ -11,7 +11,7 @@ public class DetermineShippingCostsUnitTests
         var shippingCosts = new DetermineShippingCosts();
         
         // Act
-        var result = shippingCosts.ShippingCosts(false, null, 0.00);
+        var result = shippingCosts.ShippingCosts(false, "null", 0.00);
         
         //Assert
         Assert.Equal(0, result);
@@ -24,7 +24,7 @@ public class DetermineShippingCostsUnitTests
         var shippingCosts = new DetermineShippingCosts();
         
         //Act
-        var result = shippingCosts.ShippingCosts(true, null, 1550);
+        var result = shippingCosts.ShippingCosts(true, "null", 1550);
         
         //Assert
         Assert.Equal(0, result);
