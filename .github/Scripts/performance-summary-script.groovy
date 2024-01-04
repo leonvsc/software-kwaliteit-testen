@@ -17,7 +17,7 @@ Map<String, Object> aggregatedData = [:]
 
 jtlFile.eachLine { line ->
     if (!line.startsWith("timeStamp")) {
-        def parts = line.split(/,(?="")/)
+        def parts = line.split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/)
         def elapsed = Integer.parseInt(parts[1])
         def responseCode = Integer.parseInt(parts[3])
         def warningCount = (elapsed > warningThreshold && elapsed < 300) ? 1 : 0
