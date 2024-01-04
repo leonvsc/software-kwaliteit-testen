@@ -4,6 +4,9 @@ String timestamp = System.env.TIMESTAMP
 String jtlFilePath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_testresults.jtl"
 String outputXmlPath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_summary_report.xml" // Path to output XML file
 
+// Define the warning threshold in milliseconds
+int warningThreshold = 200
+
 // Open the JTL file
 def jtlFile = new File(jtlFilePath)
 if (!jtlFile.exists()) {
