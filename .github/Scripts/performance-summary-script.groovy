@@ -20,12 +20,12 @@ jtlFile.eachLine { line ->
         def parts = line.split(',')
 
         // Aggregate data for total response time, warnings and total requests
-        summary[label] = summary.getOrDefault(label, [totalResponseTime: 0, totalWarnings: 0, totalRequests: 0])
-        summary[label].totalResponseTime += elapsed
+        summary = summary.getOrDefault([totalResponseTime: 0, totalWarnings: 0, totalRequests: 0])
+        summary.totalResponseTime += elapsed
         if (elapsed > 200 && elapsed < 300) {
-            summary[label].totalWarnings++
+            summary.totalWarnings++
         }
-        summary[label].totalRequests++
+        summary.totalRequests++
 
         def requestInfo = [
             timeStamp: parts[0],
@@ -64,8 +64,10 @@ xml.summaryReport {
         }
     }
     summarized {
-        summary.each { label, data ->
-            request(label: label, totalResponseTime: data.totalResponseTime, totalWarnings: data.totalWarnings, totalRequests: data.totalRequests)
+        summary.each { data ->
+            totalResponseTime: data.totalResponseTime, 
+            totalWarnings: data.totalWarnings, 
+            totalRequests: data.totalRequests
         }
     }
 }
