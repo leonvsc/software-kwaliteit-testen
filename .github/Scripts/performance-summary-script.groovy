@@ -93,30 +93,6 @@ xml.summaryReport {
             }
         }
     }
-    detailedRequests {
-        requestData.each { request ->
-            request {
-                timeStamp(request.timeStamp)
-                elapsed(request.elapsed)
-                label(request.label)
-                responseCode(request.responseCode)
-                responseMessage(request.responseMessage)
-                threadName(request.threadName)
-                dataType(request.dataType)
-                success(request.success)
-                failureMessage(request.failureMessage ?: 'None')
-                bytes(request.bytes)
-                sentBytes(request.sentBytes)
-                grpThreads(request.grpThreads)
-                allThreads(request.allThreads)
-                URL(request.URL ?: 'None')
-                latency(request.latency)
-                idleTime(request.idleTime)
-                connect(request.connect ?: 'None')
-                warning(request.warning)
-            }
-        }
-    }
 }
 
 // Save the XML content to a file
