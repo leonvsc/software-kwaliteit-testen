@@ -64,9 +64,9 @@ xml.summaryReport {
         }
     }
     summarized {
-        aggregatedData.each { data ->
-            totalRequestsSummary {
-                totalResponseTime("${data.totalResponseTime} ms")
+        aggregatedData.each { label, data ->
+            totalRequestSummary(label: label) {
+                totalResponseTime(data.totalResponseTime)
                 totalWarnings(data.totalWarnings)
                 totalRequests(data.totalRequests)
             }
