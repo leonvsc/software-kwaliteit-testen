@@ -42,6 +42,16 @@ jobs:
         mkdir -p .github/JMeterTestPlan/Results/Logs
         mkdir -p .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report
 
+    # Update apt-get
+    - name: Update apt-get
+      run: | 
+        sudo apt-get update
+        if [ $? -eq 0 ]; then
+              echo "Succesfully updated apt-get"
+          else
+              echo "Warning: Failed to update apt-get, apt-get might not have the newest versions available!"
+        fi
+
     # Installing Jmeter to run tests
     - name: Install JMeter
       run: |
@@ -55,17 +65,31 @@ jobs:
             exit 1
         fi
 
+    # Install unzip
+    - name: Install unzip
+      run: | 
+        sudo apt-get unzip
+        if [ $? -eq 0 ]; then
+              echo "Succesfully installed unzip"
+              unzip --version
+          else
+              echo "Cannot continue performance test workflow without unzip"
+              exit 1
+        fi
+
+
     # Install Groovy
     - name: Install Groovy
       run: |
-        sudo apt-get update
-        sudo apt-get -y install groovy
+        wget https://groovy.jfrog.io/ui/native/dist-release-local/groovy-zips/apache-groovy-binary-4.0.12.zip
         if [ $? -eq 0 ]; then
-            echo "Succesfully installed groovy"
+            echo "Succesfully downloaded groovy"
+            sudo unzip apache-groovy-binary-4.0.12.zip -d .apache-groovy-binary-4.0.12
+            echo "${PWD}/apache-groovy-binary-4.0.12/bin" >> $GITHUB_PATH
             echo "This is the groovy version"
             groovy --version
         else
-            echo "Failed to download and/or install groovy sdk"
+            echo "Failed to download and/or install groovy"
             exit 1
         fi
 
