@@ -12,12 +12,21 @@ if (!jtlFile.exists()) {
 }
 
 List<Map<String, String>> requestData = []
+Map<String, Map<String, Integer>> summary = [:]
 
 // Process each line in the JTL file
 jtlFile.eachLine { line ->
     if (!line.startsWith("timeStamp")) {
         def parts = line.split(',')
-        def label = parts[2]
+
+        // Aggregate data for total response time, warnings and total requests
+        summary[label] = summary.getOrDefault(label, [totalResponseTime: 0, totalWarnings: 0, totalRequests: 0])
+        summary[label].totalResponseTime += elapsed
+        if (elapsed > 200 && elapsed < 300) {
+            summary[label].totalWarnings++
+        }
+        summary[label].totalRequests++
+
         def requestInfo = [
             timeStamp: parts[0],
             elapsed: parts[1],
@@ -52,6 +61,11 @@ xml.summaryReport {
                     "$key"(value ?: 'None')
                 }
             }
+        }
+    }
+    summarized {
+        summary.each { label, data ->
+            request(label: label, totalResponseTime: data.totalResponseTime, totalWarnings: data.totalWarnings, totalRequests: data.totalRequests)
         }
     }
 }
