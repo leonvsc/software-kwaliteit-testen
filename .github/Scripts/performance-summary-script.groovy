@@ -36,7 +36,7 @@ jtlFile.eachLine { line ->
             idleTime: parts[15],
             connect: parts[16]
         ]
-        requestData << request
+        requestData << requestInfo
     }
 }
 
