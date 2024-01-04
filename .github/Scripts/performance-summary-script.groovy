@@ -1,7 +1,7 @@
 import groovy.xml.MarkupBuilder
-
-String jtlFilePath = '.github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_testresults.jtl' // Update this with the path to your JTL file
-String outputXmlPath = '.github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_summary_report.xml' // Path to output XML file
+String timestamp = System.env.TIMESTAMP
+String jtlFilePath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_testresults.jtl"
+String outputXmlPath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_summary_report.xml" // Path to output XML file
 
 // Define the warning threshold in milliseconds
 int warningThreshold = 200
