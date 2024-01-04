@@ -59,7 +59,13 @@ jobs:
     - name: Install Groovy
       run: |
         sudo apt-get update
-        sudo apt-get install -y groovy
+        sudo sdk install groovy
+        if [ $? -eq 0 ]; then
+            echo "Succesfully installed groovy sdk"
+        else
+            echo "Failed to download and/or install groovy sdk"
+            exit 1
+        fi
 
     # Run JMeter Test
     # testing
