@@ -71,7 +71,7 @@ xml.summaryReport {
     }
     'detailedRequests' {
         requestData.each { request ->
-            'request' {
+            request {
                 'timeStamp'(request.timeStamp)
                 'elapsed'(request.elapsed)
                 'label'(request.label)
