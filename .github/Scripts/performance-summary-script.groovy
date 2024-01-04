@@ -17,10 +17,10 @@ List<Map<String, String>> requestData = []
 jtlFile.eachLine { line ->
     if (!line.startsWith("timeStamp")) {
         def parts = line.split(',')
+        def label = parts[2]
         def requestInfo = [
             timeStamp: parts[0],
             elapsed: parts[1],
-            label: parts[2],
             responseCode: parts[3],
             responseMessage: parts[4],
             threadName: parts[5],
