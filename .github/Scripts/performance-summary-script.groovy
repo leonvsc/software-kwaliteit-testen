@@ -17,7 +17,7 @@ List<Map<String, String>> requestData = []
 jtlFile.eachLine { line ->
     if (!line.startsWith("timeStamp")) {
         def parts = line.split(',')
-        def request = [
+        def requestInfo = [
             timeStamp: parts[0],
             elapsed: parts[1],
             label: parts[2],
@@ -45,8 +45,10 @@ def writer = new StringWriter()
 def xml = new MarkupBuilder(writer)
 xml.requests {
     requestData.each { request ->
-        request.each { key, value ->
-            "$key"(value ?: 'None')
+        request {
+            requestInfo.each { key, value ->
+                "$key"(value ?: 'None')
+            }
         }
     }
 }
