@@ -14,9 +14,11 @@ if (!jtlFile.exists()) {
     return
 }
 
+// Define a map for aggregated summary data and a list for individual request data
 Map<String, Map<String, Object>> summary = [:]
 List<Map<String, Object>> requestData = []
 
+// Process each line in the JTL file
 jtlFile.eachLine { line ->
     if (!line.startsWith("timeStamp")) {
         def parts = line.split(',')
@@ -31,6 +33,7 @@ jtlFile.eachLine { line ->
             summary[label].warningCount++
         }
 
+        // Store individual request data
         def entry = [
             timeStamp: parts[0],
             elapsed: responseTime,
@@ -55,6 +58,7 @@ jtlFile.eachLine { line ->
     }
 }
 
+// Create XML content
 def writer = new StringWriter()
 def xml = new MarkupBuilder(writer)
 xml.summaryReport {
@@ -92,6 +96,7 @@ xml.summaryReport {
     }
 }
 
+// Save the XML content to a file
 new File(outputXmlPath).withWriter('UTF-8') { fileWriter ->
     fileWriter.write(writer.toString())
 }
