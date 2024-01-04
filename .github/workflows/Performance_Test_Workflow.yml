@@ -55,6 +55,12 @@ jobs:
             exit 1
         fi
 
+    # Install Groovy
+    - name: Install Groovy
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y groovy
+
     # Run JMeter Test
     # testing
     - name: Run JMeter Test
@@ -63,6 +69,11 @@ jobs:
         -l .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_testresults.jtl \
         -e -o .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report \
         -j .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log || (echo "JMeter test failed" && exit 1)
+
+    # Run Groovy Script to Generate Summary Report
+    - name: Generate Summary Report
+      run: |
+        groovy /git/Gab-pipeline-test-branche/sourceCode/.github/Scripts/performance-summary-script.groovy
 
     # Check the success or failure of the test even when another step might fail after the jmeter test
     - name: Set test result message
