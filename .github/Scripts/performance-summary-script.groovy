@@ -43,7 +43,7 @@ jtlFile.eachLine { line ->
 // Create XML content
 def writer = new StringWriter()
 def xml = new MarkupBuilder(writer)
-xml.requests.each {
+xml.requests {
     requestData.each { request ->
         request.each {
             request.each { key, value ->
