@@ -58,7 +58,7 @@ jtlFile.eachLine { line ->
 def writer = new StringWriter()
 def xml = new MarkupBuilder(writer)
 xml.summaryReport {
-    summary.each { label, data ->
+    summary.forEach { label, data ->
         'requestSummary'(label: label) {
             'totalRequests'(data.totalRequests)
             'averageResponseTime'("${data.totalResponseTime / data.totalRequests} ms")
@@ -66,7 +66,7 @@ xml.summaryReport {
         }
     }
     'detailedRequests' {
-        requestData.each { request ->
+        requestData.forEach { request ->
             'request' {
                 request.each { key, value ->
                     "$key"(value ?: 'None')
