@@ -44,11 +44,9 @@ jtlFile.eachLine { line ->
 def writer = new StringWriter()
 def xml = new MarkupBuilder(writer)
 xml.requests {
-    requestsData.each { request ->
-        request {
-            request.each { key, value ->
-                "$key"(value ?: 'None')
-            }
+    requestData.each { request ->
+        request.each { key, value ->
+            "$key"(value ?: 'None')
         }
     }
 }
