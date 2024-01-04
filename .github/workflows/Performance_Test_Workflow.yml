@@ -87,7 +87,6 @@ jobs:
             sudo unzip apache-groovy-binary-4.0.12.zip -d .apache-groovy-binary-4.0.12
             echo "${PWD}/apache-groovy-binary-4.0.12/groovy-4.0.12/bin" >> $GITHUB_PATH
             echo "This is the groovy version"
-            groovy --version
         else
             echo "Failed to download and/or install groovy"
             exit 1
