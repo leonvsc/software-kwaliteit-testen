@@ -33,6 +33,7 @@ jtlFile.eachLine { line ->
             label: label,
             responseCode: parts[3],
             responseMessage: parts[4],
+            assertHttpCode: (responseCode != 200) ? "Request was not successful! ${responseCode}",
             threadName: parts[5],
             dataType: parts[6],
             success: parts[7],
