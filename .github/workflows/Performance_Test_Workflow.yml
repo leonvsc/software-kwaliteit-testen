@@ -62,7 +62,7 @@ jobs:
         sudo apt-get -y install groovy
         if [ $? -eq 0 ]; then
             echo "Succesfully installed groovy"
-            echo "This is the groovy version ${groovy --version}"
+            echo "This is the groovy version"
             groovy --version
         else
             echo "Failed to download and/or install groovy sdk"
