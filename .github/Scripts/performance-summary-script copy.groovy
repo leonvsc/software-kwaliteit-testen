@@ -1,4 +1,5 @@
 import groovy.xml.MarkupBuilder
+
 String timestamp = System.env.TIMESTAMP
 String jtlFilePath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_testresults.jtl"
 String outputXmlPath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_summary_report.xml" // Path to output XML file
