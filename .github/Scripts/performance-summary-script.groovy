@@ -1,6 +1,6 @@
 import groovy.xml.MarkupBuilder
 
-String timestamp = System.env.TIMESTAMP
+String timestamp = System.getenv('TIMESTAMP')
 String jtlFilePath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_testresults.jtl"
 String outputXmlPath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_summary_report.xml"
 
@@ -14,11 +14,9 @@ if (!jtlFile.exists()) {
     return
 }
 
-// Define a map for aggregated summary data and a list for individual request data
 Map<String, Map<String, Object>> summary = [:]
 List<Map<String, Object>> requestData = []
 
-// Process each line in the JTL file
 jtlFile.eachLine { line ->
     if (!line.startsWith("timeStamp")) {
         def parts = line.split(',')
@@ -33,7 +31,6 @@ jtlFile.eachLine { line ->
             summary[label].warningCount++
         }
 
-        // Store individual request data
         def entry = [
             timeStamp: parts[0],
             elapsed: responseTime,
@@ -58,7 +55,6 @@ jtlFile.eachLine { line ->
     }
 }
 
-// Create XML content
 def writer = new StringWriter()
 def xml = new MarkupBuilder(writer)
 xml.summaryReport {
@@ -71,31 +67,15 @@ xml.summaryReport {
     }
     'detailedRequests' {
         requestData.each { request ->
-            request {
-                'timeStamp'(request.timeStamp)
-                'elapsed'(request.elapsed)
-                'label'(request.label)
-                'responseCode'(request.responseCode)
-                'responseMessage'(request.responseMessage)
-                'threadName'(request.threadName)
-                'dataType'(request.dataType)
-                'success'(request.success)
-                'failureMessage'(request.failureMessage ?: 'None')
-                'bytes'(request.bytes)
-                'sentBytes'(request.sentBytes)
-                'grpThreads'(request.grpThreads)
-                'allThreads'(request.allThreads)
-                'URL'(request.URL ?: 'None')
-                'latency'(request.latency)
-                'idleTime'(request.idleTime)
-                'connect'(request.connect ?: 'None')
-                'warning'(request.warning)
+            'request' {
+                request.each { key, value ->
+                    "$key"(value ?: 'None')
+                }
             }
         }
     }
 }
 
-// Save the XML content to a file
 new File(outputXmlPath).withWriter('UTF-8') { fileWriter ->
     fileWriter.write(writer.toString())
 }
