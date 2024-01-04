@@ -45,7 +45,7 @@ jtlFile.eachLine { line ->
 def writer = new StringWriter()
 def xml = new MarkupBuilder(writer)
 xml.summaryReport {
-    requestData.each { label, requestInfo ->
+    requestData.each { requestInfo ->
         request(label: requestInfo.label) { // Add label attribute to request tag
             requestInfo.each { key, value ->
             if (key != 'label') {
