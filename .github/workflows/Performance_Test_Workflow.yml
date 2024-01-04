@@ -71,7 +71,7 @@ jobs:
         sudo apt-get -y install unzip
         if [ $? -eq 0 ]; then
               echo "Succesfully installed unzip"
-              unzip --version
+              unzip -v
           else
               echo "Cannot continue performance test workflow without unzip"
               exit 1
