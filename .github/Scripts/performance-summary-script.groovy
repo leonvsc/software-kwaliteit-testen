@@ -19,7 +19,7 @@ jtlFile.eachLine { line ->
     if (!line.startsWith("timeStamp")) {
         def parts = line.split(',')
         def elapsed = Integer.parseInt(parts[1])
-        def warningCount = elapsed > warningThreshold ? 1 : 0
+        def warningCount = elapsed > warningThreshold ? 1 : 0 && elapsed < 300 ? 1 : 0
 
         def label = parts[2]
         aggregatedData[label] = aggregatedData.getOrDefault(label, [totalResponseTime: 0, totalWarnings: 0, totalRequests: 0])
