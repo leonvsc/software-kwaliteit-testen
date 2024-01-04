@@ -65,9 +65,9 @@ xml.summaryReport {
     }
     summarized {
         summary.each { data ->
-            totalResponseTime: data.totalResponseTime, 
-            totalWarnings: data.totalWarnings, 
-            totalRequests: data.totalRequests
+            totalRequests(data.totalRequests)
+            averageResponseTime("${data.totalResponseTime / data.totalRequests} ms")
+            warningsCount(data.warningCount)
         }
     }
 }
