@@ -23,6 +23,8 @@ jtlFile.eachLine { line ->
         def label = parts[2]
         def responseTime = Integer.parseInt(parts[1])
 
+
+
         // Initialize data structure for each label
         if (!summary.containsKey(label)) {
             summary[label] = [totalRequests: 0, totalResponseTime: 0, warningCount: 0]
@@ -36,6 +38,28 @@ jtlFile.eachLine { line ->
         if (responseTime > warningThreshold) {
             summary[label].warningCount++
         }
+
+        def entry = [
+            timeStamp: parts[0],
+            elapsed: responseTime,
+            label: parts[2],
+            responseCode: parts[3],
+            responseMessage: parts[4],
+            threadName: parts[5],
+            dataType: parts[6],
+            success: parts[7],
+            failureMessage: parts[8],
+            bytes: parts[9],
+            sentBytes: parts[10],
+            grpThreads: parts[11],
+            allThreads: parts[12],
+            URL: parts[13],
+            latency: parts[14],
+            idleTime: parts[15],
+            connect: parts[16],
+            warning: warning
+        ]
+        summary << entry
     }
 }
 
@@ -48,6 +72,25 @@ xml.summaryReport {
             totalRequests(data.totalRequests)
             averageResponseTime("${data.totalResponseTime / data.totalRequests} ms")
             warningsCount(data.warningCount)
+            
+            timeStamp(request.timeStamp)
+            elapsed(request.elapsed)
+            label(request.label)
+            responseCode(request.responseCode)
+            responseMessage(request.responseMessage)
+            threadName(request.threadName)
+            dataType(request.dataType)
+            success(request.success)
+            failureMessage(request.failureMessage ?: 'None')
+            bytes(request.bytes)
+            sentBytes(request.sentBytes)
+            grpThreads(request.grpThreads)
+            allThreads(request.allThreads)
+            URL(request.URL ?: 'None')
+            latency(request.latency)
+            idleTime(request.idleTime)
+            connect(request.connect ?: 'None')
+            warning(request.warning)
         }
     }
 }
