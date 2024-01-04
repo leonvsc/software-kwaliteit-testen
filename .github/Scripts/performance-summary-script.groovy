@@ -2,31 +2,35 @@ import groovy.xml.MarkupBuilder
 
 String timestamp = System.env.TIMESTAMP
 String jtlFilePath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_testresults.jtl"
-String outputXmlPath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_summary_report.xml" // Path to output XML file
+String outputXmlPath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_summary_report.xml"
 
-// Define the warning threshold in milliseconds
-int warningThreshold = 200
-
-// Open the JTL file
+int warningThreshold = 200  // Define the warning threshold in milliseconds
 def jtlFile = new File(jtlFilePath)
+
 if (!jtlFile.exists()) {
     println "JTL file not found: $jtlFilePath"
     return
 }
 
-List<Map<String, String>> requestData = []
+List<Map<String, Object>> requestData = []
+Map<String, Object> aggregatedData = [:]
 
-// Process each line in the JTL file
 jtlFile.eachLine { line ->
     if (!line.startsWith("timeStamp")) {
         def parts = line.split(',')
         def elapsed = Integer.parseInt(parts[1])
         def warningCount = elapsed > warningThreshold ? 1 : 0
 
+        def label = parts[2]
+        aggregatedData[label] = aggregatedData.getOrDefault(label, [totalResponseTime: 0, totalWarnings: 0, totalRequests: 0])
+        aggregatedData[label].totalResponseTime += elapsed
+        aggregatedData[label].totalWarnings += warningCount
+        aggregatedData[label].totalRequests++
+
         def requestInfo = [
             timeStamp: parts[0],
             elapsed: parts[1],
-            label: parts[2],
+            label: label,
             responseCode: parts[3],
             responseMessage: parts[4],
             threadName: parts[5],
@@ -41,37 +45,34 @@ jtlFile.eachLine { line ->
             latency: parts[14],
             idleTime: parts[15],
             connect: parts[16]
-            totalResponseTime: elapsed,
-            totalWarnings: warningCount,
-            totalRequests: 1  // Each line is one request
         ]
         requestData << requestInfo
     }
 }
 
-// Create XML content
 def writer = new StringWriter()
 def xml = new MarkupBuilder(writer)
+
 xml.summaryReport {
     requestData.each { requestInfo ->
-        request(label: requestInfo.label) { // Add label attribute to request tag
+        request(label: requestInfo.label) {
             requestInfo.each { key, value ->
-            if (!['label', 'totalResponseTime', 'totalWarnings', 'totalRequests'].contains(key)) {
+                if (key != 'label') {
                     "$key"(value ?: 'None')
                 }
             }
         }
-        summarized {
-            totalResponseTime: requestInfo.totalResponseTime, 
-            totalWarnings: requestInfo.totalWarnings, 
-            totalRequests: requestInfo.totalRequests
+    }
+    summarized {
+        aggregatedData.each { label, data ->
+            requestSummary(label: label) {
+                totalResponseTime(data.totalResponseTime)
+                totalWarnings(data.totalWarnings)
+                totalRequests(data.totalRequests)
+            }
         }
     }
 }
 
-// Save the XML content to a file
-new File(outputXmlPath).withWriter('UTF-8') { fileWriter ->
-    fileWriter.write(writer.toString())
-}
-
+new File(outputXmlPath).withWriter('UTF-8') { it.write(writer.toString()) }
 println "XML report written to: $outputXmlPath"
