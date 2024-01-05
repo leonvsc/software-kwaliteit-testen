@@ -82,8 +82,8 @@ xml.summaryReport {
             totalRequests(data.totalRequests)
             totalResponseTime(data.totalResponseTime + " ms")
             totalWithinSLA(data.totalWithinSLA)
-            totalWarnings("⚠️ " + data.totalWarnings)
-            totalFailures("❌ " + data.totalFailures)
+            totalWarnings("⚠️: " + data.totalWarnings)
+            totalFailures("❌: " + data.totalFailures)
             successPercentile(calculatePercentile(data.totalRequests, data.totalWithinSLA).toString() + "%")
             failurePercentile(calculatePercentile(data.totalRequests, data.totalFailures).toString() + "%")
         }
