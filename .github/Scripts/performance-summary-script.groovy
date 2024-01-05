@@ -4,7 +4,7 @@ String timestamp = System.env.TIMESTAMP
 String jtlFilePath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_testresults.jtl"
 String outputXmlPath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_summary_report.xml"
 
-int warningThreshold = 200  // Define the warning threshold in milliseconds
+int warningThreshold = 200  // Warning threshold in milliseconds
 int slaThreshold = 300      // SLA threshold in milliseconds
 def jtlFile = new File(jtlFilePath)
 
@@ -21,15 +21,17 @@ jtlFile.eachLine { line ->
         def parts = line.split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/)
         def elapsed = Integer.parseInt(parts[1])
         def responseCode = Integer.parseInt(parts[3])
-        def warningCount = (elapsed > warningThreshold && elapsed < 300) ? 1 : 0
 
         def label = parts[2]
         aggregatedData[label] = aggregatedData.getOrDefault(label, [totalResponseTime: 0, totalWithinSLA: 0, totalWarnings: 0, totalFailures: 0, totalRequests: 0])
         aggregatedData[label].totalResponseTime += elapsed
         aggregatedData[label].totalWithinSLA += elapsed <= slaThreshold ? 1 : 0
-        aggregatedData[label].totalWarnings += (elapsed > warningThreshold && elapsed <= slaThreshold) ? 1 : 0
+        aggregatedData[label].totalWarnings += (elapsed > warningThreshold && elapsed < slaThreshold) ? 1 : 0
         aggregatedData[label].totalFailures += elapsed > slaThreshold ? 1 : 0
         aggregatedData[label].totalRequests++
+
+        def warningMessage = elapsed > warningThreshold && elapsed < slaThreshold ? "Warning: The operation took longer than 200 ms." : ""
+        def failureMessage = elapsed > slaThreshold ? "Failure: The operation lasted too long. It took ${elapsed} milliseconds, exceeding the SLA of 300 milliseconds." : ""
 
         def requestInfo = [
             timeStamp: parts[0],
@@ -40,7 +42,8 @@ jtlFile.eachLine { line ->
             assertHttpCode: responseCode != 200 ? "Request was not successful! ${responseCode}" : "Request successful",
             dataType: parts[6],
             success: parts[7],
-            failureMessage: parts[8],
+            warningMessage: warningMessage,
+            failureMessage: failureMessage,
             bytes: parts[9],
             sentBytes: parts[10],
             grpThreads: parts[11],
@@ -52,6 +55,10 @@ jtlFile.eachLine { line ->
         ]
         requestData << requestInfo
     }
+}
+
+def calculatePercentile(total, count) {
+    return (count / (double) total * 100).round(2)
 }
 
 def writer = new StringWriter()
@@ -74,6 +81,11 @@ xml.summaryReport {
             totalWarnings(data.totalWarnings)
             totalFailures(data.totalFailures)
             totalRequests(data.totalRequests)
+            totalWarnings("⚠️ " + data.totalWarnings)
+            totalFailures("❌ " + data.totalFailures)
+            totalRequests(data.totalRequests)
+            successPercentile(successPercentile.toString() + "%")
+            failurePercentile(failurePercentile.toString() + "%")
         }
     }
 }
