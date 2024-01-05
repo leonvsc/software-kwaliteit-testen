@@ -184,7 +184,9 @@ jobs:
         # Optional converting Markdown to HTML (set content_type to text/html too):
         convert_markdown: true
         # Optional attachments:
-        attachments: .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log,.github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_summary_report.xml
+        attachments: >
+          .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log,
+          .github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_summary_report.xml
         # Optional priority: 'high', 'normal' (default) or 'low'
         priority: low
 
