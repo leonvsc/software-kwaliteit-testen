@@ -16,6 +16,10 @@ if (!jtlFile.exists()) {
 List<Map<String, Object>> requestData = []
 Map<String, Object> aggregatedData = [:]
 
+def calculatePercentile(total, count) {
+    return (count / (double) total * 100).round(2)
+}
+
 jtlFile.eachLine { line ->
     if (!line.startsWith("timeStamp")) {
         def parts = line.split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/)
@@ -33,8 +37,8 @@ jtlFile.eachLine { line ->
         def warningMessage = elapsed > warningThreshold && elapsed < slaThreshold ? "Warning: The operation took longer than 200 ms." : ""
         def failureMessage = elapsed > slaThreshold ? "Failure: The operation lasted too long. It took ${elapsed} milliseconds, exceeding the SLA of 300 milliseconds." : ""
 
-        def successPercentile = calculatePercentile(data.totalRequests, data.totalWithinSLA).toString() + "%"
-        def failurePercentile = calculatePercentile(data.totalRequests, data.totalFailures).toString() + "%"
+        def successPercentile = calculatePercentile(aggregatedData[label].totalRequests, aggregatedData[label].totalWithinSLA).toString() + "%"
+        def failurePercentile = calculatePercentile(aggregatedData[label].totalRequests, aggregatedData[label].totalFailures).toString() + "%"
 
         def requestInfo = [
             timeStamp: parts[0],
@@ -60,10 +64,6 @@ jtlFile.eachLine { line ->
     }
 }
 
-def calculatePercentile(total, count) {
-            return (count / (double) total * 100).round(2)
-        }
-
 def writer = new StringWriter()
 def xml = new MarkupBuilder(writer)
 
@@ -87,8 +87,8 @@ xml.summaryReport {
             totalWarnings("⚠️ " + data.totalWarnings)
             totalFailures("❌ " + data.totalFailures)
             totalRequests(data.totalRequests)
-            successPercentile(successPercentile.toString() + "%")
-            failurePercentile(failurePercentile.toString() + "%")
+            successPercentile(calculatePercentile(data.totalRequests, data.totalWithinSLA).toString() + "%")
+            failurePercentile(calculatePercentile(data.totalRequests, data.totalFailures).toString() + "%")
         }
     }
 }
