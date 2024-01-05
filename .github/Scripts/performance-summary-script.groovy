@@ -33,6 +33,13 @@ jtlFile.eachLine { line ->
         def warningMessage = elapsed > warningThreshold && elapsed < slaThreshold ? "Warning: The operation took longer than 200 ms." : ""
         def failureMessage = elapsed > slaThreshold ? "Failure: The operation lasted too long. It took ${elapsed} milliseconds, exceeding the SLA of 300 milliseconds." : ""
 
+        def successPercentile = calculatePercentile(data.totalRequests, data.totalWithinSLA).toString() + "%"
+        def failurePercentile = calculatePercentile(data.totalRequests, data.totalFailures).toString() + "%"
+
+        def calculatePercentile(total, count) {
+            return (count / (double) total * 100).round(2)
+        }
+
         def requestInfo = [
             timeStamp: parts[0],
             elapsed: parts[1],
@@ -57,10 +64,6 @@ jtlFile.eachLine { line ->
     }
 }
 
-def calculatePercentile(total, count) {
-    return (count / (double) total * 100).round(2)
-}
-
 def writer = new StringWriter()
 def xml = new MarkupBuilder(writer)
 
@@ -76,8 +79,6 @@ xml.summaryReport {
     }
     summarized {
         aggregatedData.each { label, data ->
-            def successPercentile = calculatePercentile(data.totalRequests, data.totalWithinSLA).toString() + "%"
-            def failurePercentile = calculatePercentile(data.totalRequests, data.totalFailures).toString() + "%"
             totalResponseTime(data.totalResponseTime + " ms")
             totalWithinSLA(data.totalWithinSLA)
             totalWarnings(data.totalWarnings)
