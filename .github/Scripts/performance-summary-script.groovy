@@ -5,6 +5,7 @@ String jtlFilePath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report
 String outputXmlPath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_summary_report.xml"
 
 int warningThreshold = 200  // Define the warning threshold in milliseconds
+int slaThreshold = 300      // SLA threshold in milliseconds
 def jtlFile = new File(jtlFilePath)
 
 if (!jtlFile.exists()) {
@@ -23,9 +24,11 @@ jtlFile.eachLine { line ->
         def warningCount = (elapsed > warningThreshold && elapsed < 300) ? 1 : 0
 
         def label = parts[2]
-        aggregatedData[label] = aggregatedData.getOrDefault(label, [totalResponseTime: 0, totalWarnings: 0, totalRequests: 0])
+        aggregatedData[label] = aggregatedData.getOrDefault(label, [totalResponseTime: 0, totalWithinSLA: 0, totalWarnings: 0, totalFailures: 0, totalRequests: 0])
         aggregatedData[label].totalResponseTime += elapsed
-        aggregatedData[label].totalWarnings += warningCount
+        aggregatedData[label].totalWithinSLA += elapsed <= slaThreshold ? 1 : 0
+        aggregatedData[label].totalWarnings += (elapsed > warningThreshold && elapsed <= slaThreshold) ? 1 : 0
+        aggregatedData[label].totalFailures += elapsed > slaThreshold ? 1 : 0
         aggregatedData[label].totalRequests++
 
         def requestInfo = [
@@ -67,7 +70,9 @@ xml.summaryReport {
     summarized {
         aggregatedData.each { label, data ->
             totalResponseTime(data.totalResponseTime + " ms")
+            totalWithinSLA(data.totalWithinSLA)
             totalWarnings(data.totalWarnings)
+            totalFailures(data.totalFailures)
             totalRequests(data.totalRequests)
         }
     }
