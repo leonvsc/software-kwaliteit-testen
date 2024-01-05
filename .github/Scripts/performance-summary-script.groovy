@@ -36,10 +36,6 @@ jtlFile.eachLine { line ->
         def successPercentile = calculatePercentile(data.totalRequests, data.totalWithinSLA).toString() + "%"
         def failurePercentile = calculatePercentile(data.totalRequests, data.totalFailures).toString() + "%"
 
-        def calculatePercentile(total, count) {
-            return (count / (double) total * 100).round(2)
-        }
-
         def requestInfo = [
             timeStamp: parts[0],
             elapsed: parts[1],
@@ -63,6 +59,10 @@ jtlFile.eachLine { line ->
         requestData << requestInfo
     }
 }
+
+def calculatePercentile(total, count) {
+            return (count / (double) total * 100).round(2)
+        }
 
 def writer = new StringWriter()
 def xml = new MarkupBuilder(writer)
