@@ -76,6 +76,8 @@ xml.summaryReport {
     }
     summarized {
         aggregatedData.each { label, data ->
+            def successPercentile = calculatePercentile(data.totalRequests, data.totalWithinSLA)
+            def failurePercentile = calculatePercentile(data.totalRequests, data.totalFailures)
             totalResponseTime(data.totalResponseTime + " ms")
             totalWithinSLA(data.totalWithinSLA)
             totalWarnings(data.totalWarnings)
