@@ -2,60 +2,76 @@ import groovy.xml.MarkupBuilder
 
 String timestamp = System.env.TIMESTAMP
 String jtlFilePath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_testresults.jtl"
-String outputXmlPath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_summary_report.xml" // Path to output XML file
+String outputXmlPath = ".github/JMeterTestPlan/Results/Reports/${timestamp}_Report/${timestamp}_summary_report.xml"
 
-// Define the warning threshold in milliseconds
-int warningThreshold = 200
-
-// Open the JTL file
+int warningThreshold = 200  // Define the warning threshold in milliseconds
 def jtlFile = new File(jtlFilePath)
+
 if (!jtlFile.exists()) {
     println "JTL file not found: $jtlFilePath"
     return
 }
 
-// Define a map to hold the summary data
-Map<String, Map<String, Object>> summary = [:]
+List<Map<String, Object>> requestData = []
+Map<String, Object> aggregatedData = [:]
 
-// Process each line in the JTL file
 jtlFile.eachLine { line ->
-    if (!line.startsWith("timeStamp")) { // Skip the header line
-        def parts = line.split(',')
+    if (!line.startsWith("timeStamp")) {
+        def parts = line.split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/)
+        def elapsed = Integer.parseInt(parts[1])
+        def responseCode = Integer.parseInt(parts[3])
+        def warningCount = (elapsed > warningThreshold && elapsed < 300) ? 1 : 0
+
         def label = parts[2]
-        def responseTime = Integer.parseInt(parts[1])
+        aggregatedData[label] = aggregatedData.getOrDefault(label, [totalResponseTime: 0, totalWarnings: 0, totalRequests: 0])
+        aggregatedData[label].totalResponseTime += elapsed
+        aggregatedData[label].totalWarnings += warningCount
+        aggregatedData[label].totalRequests++
 
-        // Initialize data structure for each label
-        if (!summary.containsKey(label)) {
-            summary[label] = [totalRequests: 0, totalResponseTime: 0, warningCount: 0]
-        }
-
-        // Update summary data
-        summary[label].totalRequests++
-        summary[label].totalResponseTime += responseTime
-
-        // Check if response time exceeds the warning threshold
-        if (responseTime > warningThreshold) {
-            summary[label].warningCount++
-        }
+        def requestInfo = [
+            timeStamp: parts[0],
+            elapsed: parts[1],
+            label: label,
+            responseCode: parts[3],
+            responseMessage: parts[4],
+            assertHttpCode: responseCode != 200 ? "Request was not successful! ${responseCode}" : "Request successful",
+            dataType: parts[6],
+            success: parts[7],
+            failureMessage: parts[8],
+            bytes: parts[9],
+            sentBytes: parts[10],
+            grpThreads: parts[11],
+            allThreads: parts[12],
+            URL: parts[13],
+            latency: parts[14],
+            idleTime: parts[15],
+            connect: parts[16]
+        ]
+        requestData << requestInfo
     }
 }
 
-// Create XML content
 def writer = new StringWriter()
 def xml = new MarkupBuilder(writer)
+
 xml.summaryReport {
-    summary.each { label, data ->
-        request(label: label) {
+    requestData.each { requestInfo ->
+        request(label: requestInfo.label) {
+            requestInfo.each { key, value ->
+                if (key != 'label') {
+                    "$key"(value ?: 'None')
+                }
+            }
+        }
+    }
+    summarized {
+        aggregatedData.each { label, data ->
+            totalResponseTime(data.totalResponseTime + " ms")
+            totalWarnings(data.totalWarnings)
             totalRequests(data.totalRequests)
-            averageResponseTime("${data.totalResponseTime / data.totalRequests} ms")
-            warningsCount(data.warningCount)
         }
     }
 }
 
-// Save the XML content to a file
-new File(outputXmlPath).withWriter('UTF-8') { fileWriter ->
-    fileWriter.write(writer.toString())
-}
-
-println "Summary report written to: $outputXmlPath"
+new File(outputXmlPath).withWriter('UTF-8') { it.write(writer.toString()) }
+println "XML report written to: $outputXmlPath"
