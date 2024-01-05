@@ -105,6 +105,10 @@
             <intProp name="Assertion.test_type">8</intProp>
           </ResponseAssertion>
           <hashTree/>
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="SLA - response time &gt;= 0.2 failure" enabled="true">
+            <stringProp name="DurationAssertion.duration">200</stringProp>
+          </DurationAssertion>
+          <hashTree/>
           <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="SLA - response time &gt;= 0.3 failure" enabled="true">
             <stringProp name="DurationAssertion.duration">300</stringProp>
           </DurationAssertion>
