@@ -14,9 +14,8 @@ on:
 
   # Triggers the workflow on push or pull request events but only for the "Gab-pipeline-test-branche" branch
   push:
-    branches: [ "main" ] 
+    branches: [ "Gab-pipeline-test-branche" ] 
   pull_request:
-    branches: [ "main" ]
 
 jobs:
   # This workflow contains a single job called "performance-test-build"
