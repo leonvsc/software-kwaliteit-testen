@@ -87,11 +87,15 @@
                 <stringProp name="Header.name">Content-Type</stringProp>
                 <stringProp name="Header.value">text/xml; charset=utf-8</stringProp>
               </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.value">http://tempuri.org/INopService/GetPaymentMethodCollection</stringProp>
+                <stringProp name="Header.name">SOAPAction</stringProp>
+              </elementProp>
             </collectionProp>
             <stringProp name="TestPlan.comments">Content type</stringProp>
           </HeaderManager>
           <hashTree/>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="false">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">SOAPAction</stringProp>
