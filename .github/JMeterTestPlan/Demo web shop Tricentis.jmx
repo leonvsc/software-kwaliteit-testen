@@ -20,8 +20,8 @@
         <stringProp name="ThreadGroup.num_threads">5</stringProp>
         <stringProp name="ThreadGroup.ramp_time">20</stringProp>
         <boolProp name="ThreadGroup.delayedStart">false</boolProp>
-        <boolProp name="ThreadGroup.scheduler">false</boolProp>
-        <stringProp name="ThreadGroup.duration"></stringProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <stringProp name="ThreadGroup.duration">120</stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
       </ThreadGroup>
@@ -92,7 +92,7 @@
                 <stringProp name="Header.name">SOAPAction</stringProp>
               </elementProp>
             </collectionProp>
-            <stringProp name="TestPlan.comments">Content type</stringProp>
+            <stringProp name="TestPlan.comments">Content type and SOAPAction</stringProp>
           </HeaderManager>
           <hashTree/>
           <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="false">
@@ -122,6 +122,10 @@
           <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="SLA - response time &gt;= 0.2 warning" enabled="false">
             <stringProp name="DurationAssertion.duration">200</stringProp>
           </DurationAssertion>
+          <hashTree/>
+          <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+            <stringProp name="ConstantTimer.delay">20000</stringProp>
+          </ConstantTimer>
           <hashTree/>
         </hashTree>
         <TestAction guiclass="TestActionGui" testclass="TestAction" testname="Think Time" enabled="true">
