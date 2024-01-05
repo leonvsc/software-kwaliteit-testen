@@ -106,7 +106,7 @@ jobs:
       run: |
         groovy .github/Scripts/performance-summary-script.groovy
 
-    # Check the success or failure of the test even when another step might fail after the jmeter test
+    # Check the success or failure status of the test run even when another step might fail after the jmeter test
     - name: Set test result message
       if: always()
       run: |
@@ -114,7 +114,7 @@ jobs:
           echo "TEST_RESULT=JMeter test executed successfully!" >> $GITHUB_ENV
           echo "TEST_RESULT_SUBJECT=SUCCESSFUL:" >> $GITHUB_ENV
         else
-          echo "TEST_RESULT=JMeter test failed." >> $GITHUB_ENV
+          echo "TEST_RESULT=JMeter test could not be executed." >> $GITHUB_ENV
           echo "TEST_RESULT_SUBJECT=FAILED:" >> $GITHUB_ENV
         fi
 
@@ -172,19 +172,19 @@ jobs:
 
           For more information refer to the reports and logs of this run on github or in the attachment.
         # Optional carbon copy recipients:
-        # cc: kyloren@example.com,leia@example.com
+        # cc: 
         # Optional blind carbon copy recipients:
-        # bcc: r2d2@example.com,hansolo@example.com
+        # bcc: 
         # Optional recipient of the email response:
-        # reply_to: luke@example.com
+        # reply_to:
         # Optional Message ID this message is replying to:
-        # in_reply_to: <random-luke@example.com>
+        # in_reply_to:
         # Optional unsigned/invalid certificates allowance:
         # ignore_cert: true
         # Optional converting Markdown to HTML (set content_type to text/html too):
         convert_markdown: true
         # Optional attachments:
-        attachments: .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log
+        attachments: .github/JMeterTestPlan/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log,.github/JMeterTestPlan/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_summary_report.xml
         # Optional priority: 'high', 'normal' (default) or 'low'
         priority: low
 
