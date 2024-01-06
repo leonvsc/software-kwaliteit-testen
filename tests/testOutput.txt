@@ -1,0 +1,388 @@
+================================
+=
+= SOAPUI_HOME = /opt/SoapUI
+=
+================================
+2023-12-15 09:54:56,620 [main] WARN  com.eviware.soapui.SoapUI - Could not find jfxrt.jar. Internal browser will be disabled.
+Configuring log4j from [/opt/SoapUI-5.2.1/bin/soapui-log4j.xml]
+09:54:57,065 INFO  [DefaultSoapUICore] Creating new settings at [/root/soapui-settings.xml]
+09:54:58,512 INFO  [PluginManager] 0 plugins loaded in 4 ms
+09:54:58,513 INFO  [DefaultSoapUICore] All plugins loaded
+SoapUI 5.2.1 TestCase Runner
+09:55:00,016 INFO  [WsdlProject] Loaded project from [file:/opt/soapui/projects/Soap-try-soapui-project.xml]
+09:55:00,022 INFO  [SoapUITestCaseRunner] Running SoapUI tests in project [Soap try]
+09:55:00,028 INFO  [SoapUITestCaseRunner] Running TestSuite [Log in testing], runType = SEQUENTIAL
+09:55:00,040 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [Correct log in]
+09:55:00,082 INFO  [SoapUITestCaseRunner] running step [GetPaymentMethodCollection - Correct log in]
+09:55:00,290 DEBUG [HttpClientSupport$SoapUIHttpClient] Attempt 1 to execute request
+09:55:00,290 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Sending request: POST /Plugins/Misc.WebServicesCustomer/Remote/NopService.svc HTTP/1.1
+09:55:00,414 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Receiving response: HTTP/1.1 200 OK
+09:55:00,440 DEBUG [HttpClientSupport$SoapUIHttpClient] Connection can be kept alive indefinitely
+Progress: 1 - Loading Definition from cache
+09:55:00,578 DEBUG [AbstractDefinitionContext] Loading Definition...
+09:55:00,602 DEBUG [WsdlInterfaceDefinition] Loading WSDL: http://demowebshop.tricentis.com/Plugins/Misc.WebServicesCustomer/Remote/NopService.svc?singleWsdl
+09:55:00,602 DEBUG [AbstractWsdlDefinitionLoader] Returning baseInputSource [http://demowebshop.tricentis.com/Plugins/Misc.WebServicesCustomer/Remote/NopService.svc?singleWsdl]
+Retrieving document at 'http://demowebshop.tricentis.com/Plugins/Misc.WebServicesCustomer/Remote/NopService.svc?singleWsdl'.
+09:55:00,841 INFO  [SchemaUtils] Added default schema from file:/opt/SoapUI-5.2.1/bin/soapui-5.2.1.jar!/com/eviware/soapui/resources/xsds/xop.xsd with targetNamespace http://www.w3.org/2004/08/xop/include
+09:55:00,878 INFO  [SchemaUtils] Added default schema from file:/opt/SoapUI-5.2.1/bin/soapui-5.2.1.jar!/com/eviware/soapui/resources/xsds/XMLSchema.xsd with targetNamespace http://www.w3.org/2001/XMLSchema
+09:55:00,879 INFO  [SchemaUtils] Added default schema from file:/opt/SoapUI-5.2.1/bin/soapui-5.2.1.jar!/com/eviware/soapui/resources/xsds/xml.xsd with targetNamespace http://www.w3.org/XML/1998/namespace
+09:55:00,881 INFO  [SchemaUtils] Added default schema from file:/opt/SoapUI-5.2.1/bin/soapui-5.2.1.jar!/com/eviware/soapui/resources/xsds/swaref.xsd with targetNamespace http://ws-i.org/profiles/basic/1.1/xsd
+09:55:00,881 INFO  [SchemaUtils] Added default schema from file:/opt/SoapUI-5.2.1/bin/soapui-5.2.1.jar!/com/eviware/soapui/resources/xsds/xmime200505.xsd with targetNamespace http://www.w3.org/2005/05/xmlmime
+09:55:00,882 INFO  [SchemaUtils] Added default schema from file:/opt/SoapUI-5.2.1/bin/soapui-5.2.1.jar!/com/eviware/soapui/resources/xsds/xmime200411.xsd with targetNamespace http://www.w3.org/2004/11/xmlmime
+09:55:00,883 INFO  [SchemaUtils] Added default schema from file:/opt/SoapUI-5.2.1/bin/soapui-5.2.1.jar!/com/eviware/soapui/resources/xsds/soapEnvelope.xsd with targetNamespace http://schemas.xmlsoap.org/soap/envelope/
+09:55:00,886 INFO  [SchemaUtils] Added default schema from file:/opt/SoapUI-5.2.1/bin/soapui-5.2.1.jar!/com/eviware/soapui/resources/xsds/soapEncoding.xsd with targetNamespace http://schemas.xmlsoap.org/soap/encoding/
+09:55:00,888 INFO  [SchemaUtils] Added default schema from file:/opt/SoapUI-5.2.1/bin/soapui-5.2.1.jar!/com/eviware/soapui/resources/xsds/soapEnvelope12.xsd with targetNamespace http://www.w3.org/2003/05/soap-envelope
+09:55:00,891 INFO  [SchemaUtils] Added default schema from file:/opt/SoapUI-5.2.1/bin/soapui-5.2.1.jar!/com/eviware/soapui/resources/xsds/soapEncoding12.xsd with targetNamespace http://www.w3.org/2003/05/soap-encoding
+09:55:00,891 INFO  [SchemaUtils] Loading schema types from [http://demowebshop.tricentis.com/Plugins/Misc.WebServicesCustomer/Remote/NopService.svc?singleWsdl]
+09:55:00,891 INFO  [SchemaUtils] Getting schema http://demowebshop.tricentis.com/Plugins/Misc.WebServicesCustomer/Remote/NopService.svc?singleWsdl
+09:55:01,405 DEBUG [AbstractDefinitionContext] Loaded Definition: ok
+09:55:01,555 INFO  [SoapUITestCaseRunner] Assertion [Not SOAP Fault] has status VALID
+09:55:01,555 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+09:55:01,555 INFO  [SoapUITestCaseRunner] Assertion [Schema Compliance] has status VALID
+09:55:01,555 INFO  [SoapUITestCaseRunner] Assertion [SOAP Response] has status VALID
+09:55:01,557 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [Correct log in], time taken: 1455ms, status: FINISHED
+09:55:01,570 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [Soap error]
+09:55:01,570 INFO  [SoapUITestCaseRunner] running step [GetPaymentMethodCollection - Soap error]
+09:55:01,573 DEBUG [HttpClientSupport$SoapUIHttpClient] Stale connection check
+09:55:01,576 DEBUG [HttpClientSupport$SoapUIHttpClient] Attempt 1 to execute request
+09:55:01,576 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Sending request: POST /Plugins/Misc.WebServicesCustomer/Remote/NopService.svc HTTP/1.1
+09:55:01,664 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Receiving response: HTTP/1.1 500 Internal Server Error
+09:55:01,666 DEBUG [HttpClientSupport$SoapUIHttpClient] Connection can be kept alive indefinitely
+09:55:02,245 WARN  [WsdlValidator] Missing matching Fault in wsdl for Fault Detail element [<detail>
+  <ExceptionDetail xmlns="http://schemas.datacontract.org/2004/07/System.ServiceModel" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+    <HelpLink i:nil="true"/>
+    <InnerException>
+      <HelpLink i:nil="true"/>
+      <InnerException i:nil="true"/>
+      <Message>Name cannot begin with the '&lt;' character, hexadecimal value 0x3C. Line 6, position 30.</Message>
+      <StackTrace>at System.Xml.XmlExceptionHelper.ThrowXmlException(XmlDictionaryReader reader, XmlException exception)
+   at System.Xml.XmlUTF8TextReader.VerifyNCName(String s)
+   at System.Xml.XmlUTF8TextReader.ReadQualifiedName(PrefixHandle prefix, StringHandle localName)
+   at System.Xml.XmlUTF8TextReader.ReadAttributes()
+   at System.Xml.XmlUTF8TextReader.ReadStartElement()
+   at System.Xml.XmlUTF8TextReader.Read()
+   at System.Xml.XmlBaseReader.MoveToContent()
+   at System.Xml.XmlBaseReader.IsStartElement()
+   at System.ServiceModel.Dispatcher.DataContractSerializerOperationFormatter.DeserializeParameters(XmlDictionaryReader reader, PartInfo[] parts, Object[] parameters, Boolean isRequest)
+   at System.ServiceModel.Dispatcher.DataContractSerializerOperationFormatter.DeserializeBody(XmlDictionaryReader reader, MessageVersion version, String action, MessageDescription messageDescription, Object[] parameters, Boolean isRequest)
+   at System.ServiceModel.Dispatcher.OperationFormatter.DeserializeBodyContents(Message message, Object[] parameters, Boolean isRequest)
+   at System.ServiceModel.Dispatcher.OperationFormatter.DeserializeRequest(Message message, Object[] parameters)</StackTrace>
+      <Type>System.Xml.XmlException</Type>
+    </InnerException>
+    <Message>The formatter threw an exception while trying to deserialize the message: Error in deserializing body of request message for operation 'GetPaymentMethodCollection'. Name cannot begin with the '&lt;' character, hexadecimal value 0x3C. Line 6, position 30.</Message>
+    <StackTrace><![CDATA[at System.ServiceModel.Dispatcher.OperationFormatter.DeserializeRequest(Message message, Object[] parameters)
+   at System.ServiceModel.Dispatcher.DispatchOperationRuntime.DeserializeInputs(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.DispatchOperationRuntime.InvokeBegin(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage5(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage41(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage4(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage31(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage3(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage2(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage11(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage1(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.MessageRpc.Process(Boolean isOperationContextSet)]]></StackTrace>
+    <Type>System.ServiceModel.Dispatcher.NetDispatcherFaultException</Type>
+  </ExceptionDetail>
+</detail>] in bindingOperation [GetPaymentMethodCollection]
+09:55:02,250 INFO  [SoapUITestCaseRunner] Assertion [SOAP Fault] has status VALID
+09:55:02,250 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+09:55:02,250 INFO  [SoapUITestCaseRunner] Assertion [Schema Compliance] has status VALID
+09:55:02,250 INFO  [SoapUITestCaseRunner] Assertion [SOAP Response] has status VALID
+09:55:02,250 INFO  [SoapUITestCaseRunner] Assertion [Contains] has status VALID
+09:55:02,250 INFO  [SoapUITestCaseRunner] running step [Soap error - non existing param]
+09:55:02,252 DEBUG [HttpClientSupport$SoapUIHttpClient] Stale connection check
+09:55:02,253 DEBUG [HttpClientSupport$SoapUIHttpClient] Attempt 1 to execute request
+09:55:02,254 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Sending request: POST /Plugins/Misc.WebServicesCustomer/Remote/NopService.svc HTTP/1.1
+09:55:02,391 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Receiving response: HTTP/1.1 500 Internal Server Error
+09:55:02,393 DEBUG [HttpClientSupport$SoapUIHttpClient] Connection can be kept alive indefinitely
+09:55:02,432 WARN  [WsdlValidator] Missing matching Fault in wsdl for Fault Detail element [<detail>
+  <ExceptionDetail xmlns="http://schemas.datacontract.org/2004/07/System.ServiceModel" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+    <HelpLink i:nil="true"/>
+    <InnerException>
+      <HelpLink i:nil="true"/>
+      <InnerException i:nil="true"/>
+      <Message>OperationFormatter encountered an invalid Message body. Expected to find node type 'Element' with name 'GetPaymentMethodCollection' and namespace 'http://tempuri.org/'. Found node type 'Element' with name 'tem:GetPaymentMethodCollective' and namespace 'http://tempuri.org/'</Message>
+      <StackTrace>at System.ServiceModel.Dispatcher.DataContractSerializerOperationFormatter.DeserializeBody(XmlDictionaryReader reader, MessageVersion version, String action, MessageDescription messageDescription, Object[] parameters, Boolean isRequest)
+   at System.ServiceModel.Dispatcher.OperationFormatter.DeserializeBodyContents(Message message, Object[] parameters, Boolean isRequest)
+   at System.ServiceModel.Dispatcher.OperationFormatter.DeserializeRequest(Message message, Object[] parameters)</StackTrace>
+      <Type>System.Runtime.Serialization.SerializationException</Type>
+    </InnerException>
+    <Message>Error in deserializing body of request message for operation 'GetPaymentMethodCollection'. OperationFormatter encountered an invalid Message body. Expected to find node type 'Element' with name 'GetPaymentMethodCollection' and namespace 'http://tempuri.org/'. Found node type 'Element' with name 'tem:GetPaymentMethodCollective' and namespace 'http://tempuri.org/'</Message>
+    <StackTrace><![CDATA[at System.ServiceModel.Dispatcher.OperationFormatter.DeserializeRequest(Message message, Object[] parameters)
+   at System.ServiceModel.Dispatcher.DispatchOperationRuntime.DeserializeInputs(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.DispatchOperationRuntime.InvokeBegin(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage5(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage41(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage4(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage31(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage3(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage2(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage11(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage1(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.MessageRpc.Process(Boolean isOperationContextSet)]]></StackTrace>
+    <Type>System.ServiceModel.CommunicationException</Type>
+  </ExceptionDetail>
+</detail>] in bindingOperation [GetPaymentMethodCollection]
+09:55:02,441 INFO  [SoapUITestCaseRunner] Assertion [SOAP Fault] has status VALID
+09:55:02,442 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+09:55:02,442 INFO  [SoapUITestCaseRunner] Assertion [Schema Compliance] has status VALID
+09:55:02,443 INFO  [SoapUITestCaseRunner] Assertion [SOAP Response] has status VALID
+09:55:02,443 INFO  [SoapUITestCaseRunner] Assertion [Contains] has status VALID
+09:55:02,443 INFO  [SoapUITestCaseRunner] running step [Soap error 3]
+09:55:02,444 DEBUG [HttpClientSupport$SoapUIHttpClient] Stale connection check
+09:55:02,448 DEBUG [HttpClientSupport$SoapUIHttpClient] Attempt 1 to execute request
+09:55:02,448 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Sending request: POST /Plugins/Misc.WebServicesCustomer/Remote/NopService.svc HTTP/1.1
+09:55:02,676 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Receiving response: HTTP/1.1 500 Internal Server Error
+09:55:02,681 DEBUG [HttpClientSupport$SoapUIHttpClient] Connection can be kept alive indefinitely
+09:55:02,711 WARN  [WsdlValidator] Missing matching Fault in wsdl for Fault Detail element [<detail>
+  <ExceptionDetail xmlns="http://schemas.datacontract.org/2004/07/System.ServiceModel" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+    <HelpLink i:nil="true"/>
+    <InnerException>
+      <HelpLink i:nil="true"/>
+      <InnerException i:nil="true"/>
+      <Message>Name cannot begin with the '&lt;' character, hexadecimal value 0x3C. Line 6, position 30.</Message>
+      <StackTrace>at System.Xml.XmlExceptionHelper.ThrowXmlException(XmlDictionaryReader reader, XmlException exception)
+   at System.Xml.XmlUTF8TextReader.VerifyNCName(String s)
+   at System.Xml.XmlUTF8TextReader.ReadQualifiedName(PrefixHandle prefix, StringHandle localName)
+   at System.Xml.XmlUTF8TextReader.ReadAttributes()
+   at System.Xml.XmlUTF8TextReader.ReadStartElement()
+   at System.Xml.XmlUTF8TextReader.Read()
+   at System.Xml.XmlBaseReader.MoveToContent()
+   at System.Xml.XmlBaseReader.IsStartElement()
+   at System.ServiceModel.Dispatcher.DataContractSerializerOperationFormatter.DeserializeParameters(XmlDictionaryReader reader, PartInfo[] parts, Object[] parameters, Boolean isRequest)
+   at System.ServiceModel.Dispatcher.DataContractSerializerOperationFormatter.DeserializeBody(XmlDictionaryReader reader, MessageVersion version, String action, MessageDescription messageDescription, Object[] parameters, Boolean isRequest)
+   at System.ServiceModel.Dispatcher.OperationFormatter.DeserializeBodyContents(Message message, Object[] parameters, Boolean isRequest)
+   at System.ServiceModel.Dispatcher.OperationFormatter.DeserializeRequest(Message message, Object[] parameters)</StackTrace>
+      <Type>System.Xml.XmlException</Type>
+    </InnerException>
+    <Message>The formatter threw an exception while trying to deserialize the message: Error in deserializing body of request message for operation 'GetPaymentMethodCollection'. Name cannot begin with the '&lt;' character, hexadecimal value 0x3C. Line 6, position 30.</Message>
+    <StackTrace><![CDATA[at System.ServiceModel.Dispatcher.OperationFormatter.DeserializeRequest(Message message, Object[] parameters)
+   at System.ServiceModel.Dispatcher.DispatchOperationRuntime.DeserializeInputs(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.DispatchOperationRuntime.InvokeBegin(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage5(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage41(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage4(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage31(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage3(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage2(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage11(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage1(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.MessageRpc.Process(Boolean isOperationContextSet)]]></StackTrace>
+    <Type>System.ServiceModel.Dispatcher.NetDispatcherFaultException</Type>
+  </ExceptionDetail>
+</detail>] in bindingOperation [GetPaymentMethodCollection]
+09:55:02,713 INFO  [SoapUITestCaseRunner] Assertion [SOAP Fault] has status VALID
+09:55:02,713 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+09:55:02,713 INFO  [SoapUITestCaseRunner] Assertion [SOAP Response] has status VALID
+09:55:02,713 INFO  [SoapUITestCaseRunner] Assertion [Schema Compliance] has status VALID
+09:55:02,713 INFO  [SoapUITestCaseRunner] Assertion [Contains] has status VALID
+09:55:02,713 INFO  [SoapUITestCaseRunner] Assertion [Contains] has status VALID
+09:55:02,714 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [Soap error], time taken: 1138ms, status: FINISHED
+09:55:02,715 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [Wrong password]
+09:55:02,716 INFO  [SoapUITestCaseRunner] running step [GetPaymentMethodCollection - Wrong pass]
+09:55:02,717 DEBUG [HttpClientSupport$SoapUIHttpClient] Stale connection check
+09:55:02,719 DEBUG [HttpClientSupport$SoapUIHttpClient] Attempt 1 to execute request
+09:55:02,719 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Sending request: POST /Plugins/Misc.WebServicesCustomer/Remote/NopService.svc HTTP/1.1
+09:55:02,838 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Receiving response: HTTP/1.1 500 Internal Server Error
+09:55:02,840 DEBUG [HttpClientSupport$SoapUIHttpClient] Connection can be kept alive indefinitely
+09:55:02,887 WARN  [WsdlValidator] Missing matching Fault in wsdl for Fault Detail element [<detail>
+  <ExceptionDetail xmlns="http://schemas.datacontract.org/2004/07/System.ServiceModel" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+    <HelpLink i:nil="true"/>
+    <InnerException i:nil="true"/>
+    <Message>Not allowed</Message>
+    <StackTrace><![CDATA[at Nop.Plugin.Misc.WebServicesCustomer.NopService.CheckAccess(String usernameOrEmail, String userPassword)
+   at Nop.Plugin.Misc.WebServicesCustomer.NopService.GetPaymentMethodCollection(String usernameOrEmail, String userPassword)
+   at SyncInvokeGetPaymentMethodCollection(Object , Object[] , Object[] )
+   at System.ServiceModel.Dispatcher.SyncMethodInvoker.Invoke(Object instance, Object[] inputs, Object[]& outputs)
+   at System.ServiceModel.Dispatcher.DispatchOperationRuntime.InvokeBegin(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage5(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage41(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage4(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage31(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage3(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage2(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage11(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage1(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.MessageRpc.Process(Boolean isOperationContextSet)]]></StackTrace>
+    <Type>System.ApplicationException</Type>
+  </ExceptionDetail>
+</detail>] in bindingOperation [GetPaymentMethodCollection]
+09:55:02,891 INFO  [SoapUITestCaseRunner] Assertion [Contains] has status VALID
+09:55:02,891 INFO  [SoapUITestCaseRunner] Assertion [SOAP Response] has status VALID
+09:55:02,891 INFO  [SoapUITestCaseRunner] Assertion [Schema Compliance] has status VALID
+09:55:02,891 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+09:55:02,891 INFO  [SoapUITestCaseRunner] running step [Wrong pass Long]
+09:55:02,900 DEBUG [HttpClientSupport$SoapUIHttpClient] Stale connection check
+09:55:02,912 DEBUG [HttpClientSupport$SoapUIHttpClient] Attempt 1 to execute request
+09:55:02,913 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Sending request: POST /Plugins/Misc.WebServicesCustomer/Remote/NopService.svc HTTP/1.1
+09:55:03,031 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Receiving response: HTTP/1.1 500 Internal Server Error
+09:55:03,033 DEBUG [HttpClientSupport$SoapUIHttpClient] Connection can be kept alive indefinitely
+09:55:03,039 WARN  [WsdlValidator] Missing matching Fault in wsdl for Fault Detail element [<detail>
+  <ExceptionDetail xmlns="http://schemas.datacontract.org/2004/07/System.ServiceModel" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+    <HelpLink i:nil="true"/>
+    <InnerException i:nil="true"/>
+    <Message>Not allowed</Message>
+    <StackTrace><![CDATA[at Nop.Plugin.Misc.WebServicesCustomer.NopService.CheckAccess(String usernameOrEmail, String userPassword)
+   at Nop.Plugin.Misc.WebServicesCustomer.NopService.GetPaymentMethodCollection(String usernameOrEmail, String userPassword)
+   at SyncInvokeGetPaymentMethodCollection(Object , Object[] , Object[] )
+   at System.ServiceModel.Dispatcher.SyncMethodInvoker.Invoke(Object instance, Object[] inputs, Object[]& outputs)
+   at System.ServiceModel.Dispatcher.DispatchOperationRuntime.InvokeBegin(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage5(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage41(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage4(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage31(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage3(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage2(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage11(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage1(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.MessageRpc.Process(Boolean isOperationContextSet)]]></StackTrace>
+    <Type>System.ApplicationException</Type>
+  </ExceptionDetail>
+</detail>] in bindingOperation [GetPaymentMethodCollection]
+09:55:03,042 INFO  [SoapUITestCaseRunner] Assertion [Contains] has status VALID
+09:55:03,044 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+09:55:03,044 INFO  [SoapUITestCaseRunner] Assertion [Schema Compliance] has status VALID
+09:55:03,044 INFO  [SoapUITestCaseRunner] Assertion [SOAP Response] has status VALID
+09:55:03,045 INFO  [SoapUITestCaseRunner] running step [Empty pass]
+09:55:03,046 DEBUG [HttpClientSupport$SoapUIHttpClient] Stale connection check
+09:55:03,049 DEBUG [HttpClientSupport$SoapUIHttpClient] Attempt 1 to execute request
+09:55:03,049 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Sending request: POST /Plugins/Misc.WebServicesCustomer/Remote/NopService.svc HTTP/1.1
+09:55:03,231 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Receiving response: HTTP/1.1 500 Internal Server Error
+09:55:03,232 DEBUG [HttpClientSupport$SoapUIHttpClient] Connection can be kept alive indefinitely
+09:55:03,241 WARN  [WsdlValidator] Missing matching Fault in wsdl for Fault Detail element [<detail>
+  <ExceptionDetail xmlns="http://schemas.datacontract.org/2004/07/System.ServiceModel" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+    <HelpLink i:nil="true"/>
+    <InnerException i:nil="true"/>
+    <Message>Not allowed</Message>
+    <StackTrace><![CDATA[at Nop.Plugin.Misc.WebServicesCustomer.NopService.CheckAccess(String usernameOrEmail, String userPassword)
+   at Nop.Plugin.Misc.WebServicesCustomer.NopService.GetPaymentMethodCollection(String usernameOrEmail, String userPassword)
+   at SyncInvokeGetPaymentMethodCollection(Object , Object[] , Object[] )
+   at System.ServiceModel.Dispatcher.SyncMethodInvoker.Invoke(Object instance, Object[] inputs, Object[]& outputs)
+   at System.ServiceModel.Dispatcher.DispatchOperationRuntime.InvokeBegin(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage5(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage41(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage4(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage31(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage3(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage2(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage11(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage1(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.MessageRpc.Process(Boolean isOperationContextSet)]]></StackTrace>
+    <Type>System.ApplicationException</Type>
+  </ExceptionDetail>
+</detail>] in bindingOperation [GetPaymentMethodCollection]
+09:55:03,245 INFO  [SoapUITestCaseRunner] Assertion [Contains] has status VALID
+09:55:03,247 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+09:55:03,247 INFO  [SoapUITestCaseRunner] Assertion [Schema Compliance] has status VALID
+09:55:03,247 INFO  [SoapUITestCaseRunner] Assertion [SOAP Response] has status VALID
+09:55:03,247 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [Wrong password], time taken: 523ms, status: FINISHED
+09:55:03,249 INFO  [SoapUITestCaseRunner] Running SoapUI testcase [Wrong username]
+09:55:03,250 INFO  [SoapUITestCaseRunner] running step [GetPaymentMethodCollection - incorrect name]
+09:55:03,251 DEBUG [HttpClientSupport$SoapUIHttpClient] Stale connection check
+09:55:03,253 DEBUG [HttpClientSupport$SoapUIHttpClient] Attempt 1 to execute request
+09:55:03,253 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Sending request: POST /Plugins/Misc.WebServicesCustomer/Remote/NopService.svc HTTP/1.1
+09:55:03,577 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Receiving response: HTTP/1.1 500 Internal Server Error
+09:55:03,578 DEBUG [HttpClientSupport$SoapUIHttpClient] Connection can be kept alive indefinitely
+09:55:03,586 WARN  [WsdlValidator] Missing matching Fault in wsdl for Fault Detail element [<detail>
+  <ExceptionDetail xmlns="http://schemas.datacontract.org/2004/07/System.ServiceModel" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+    <HelpLink i:nil="true"/>
+    <InnerException i:nil="true"/>
+    <Message>Not allowed</Message>
+    <StackTrace><![CDATA[at Nop.Plugin.Misc.WebServicesCustomer.NopService.CheckAccess(String usernameOrEmail, String userPassword)
+   at Nop.Plugin.Misc.WebServicesCustomer.NopService.GetPaymentMethodCollection(String usernameOrEmail, String userPassword)
+   at SyncInvokeGetPaymentMethodCollection(Object , Object[] , Object[] )
+   at System.ServiceModel.Dispatcher.SyncMethodInvoker.Invoke(Object instance, Object[] inputs, Object[]& outputs)
+   at System.ServiceModel.Dispatcher.DispatchOperationRuntime.InvokeBegin(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage5(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage41(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage4(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage31(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage3(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage2(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage11(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage1(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.MessageRpc.Process(Boolean isOperationContextSet)]]></StackTrace>
+    <Type>System.ApplicationException</Type>
+  </ExceptionDetail>
+</detail>] in bindingOperation [GetPaymentMethodCollection]
+09:55:03,592 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+09:55:03,593 INFO  [SoapUITestCaseRunner] Assertion [Contains] has status VALID
+09:55:03,593 INFO  [SoapUITestCaseRunner] Assertion [SOAP Response] has status VALID
+09:55:03,593 INFO  [SoapUITestCaseRunner] Assertion [Schema Compliance] has status VALID
+09:55:03,593 INFO  [SoapUITestCaseRunner] running step [incorrect name 2]
+09:55:03,594 DEBUG [HttpClientSupport$SoapUIHttpClient] Stale connection check
+09:55:03,596 DEBUG [HttpClientSupport$SoapUIHttpClient] Attempt 1 to execute request
+09:55:03,596 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Sending request: POST /Plugins/Misc.WebServicesCustomer/Remote/NopService.svc HTTP/1.1
+09:55:03,768 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Receiving response: HTTP/1.1 500 Internal Server Error
+09:55:03,769 DEBUG [HttpClientSupport$SoapUIHttpClient] Connection can be kept alive indefinitely
+09:55:03,774 WARN  [WsdlValidator] Missing matching Fault in wsdl for Fault Detail element [<detail>
+  <ExceptionDetail xmlns="http://schemas.datacontract.org/2004/07/System.ServiceModel" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+    <HelpLink i:nil="true"/>
+    <InnerException i:nil="true"/>
+    <Message>Not allowed</Message>
+    <StackTrace><![CDATA[at Nop.Plugin.Misc.WebServicesCustomer.NopService.CheckAccess(String usernameOrEmail, String userPassword)
+   at Nop.Plugin.Misc.WebServicesCustomer.NopService.GetPaymentMethodCollection(String usernameOrEmail, String userPassword)
+   at SyncInvokeGetPaymentMethodCollection(Object , Object[] , Object[] )
+   at System.ServiceModel.Dispatcher.SyncMethodInvoker.Invoke(Object instance, Object[] inputs, Object[]& outputs)
+   at System.ServiceModel.Dispatcher.DispatchOperationRuntime.InvokeBegin(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage5(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage41(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage4(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage31(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage3(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage2(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage11(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage1(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.MessageRpc.Process(Boolean isOperationContextSet)]]></StackTrace>
+    <Type>System.ApplicationException</Type>
+  </ExceptionDetail>
+</detail>] in bindingOperation [GetPaymentMethodCollection]
+09:55:03,779 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+09:55:03,779 INFO  [SoapUITestCaseRunner] Assertion [Contains] has status VALID
+09:55:03,779 INFO  [SoapUITestCaseRunner] Assertion [Schema Compliance] has status VALID
+09:55:03,779 INFO  [SoapUITestCaseRunner] Assertion [SOAP Response] has status VALID
+09:55:03,780 INFO  [SoapUITestCaseRunner] running step [Empty login]
+09:55:03,781 DEBUG [HttpClientSupport$SoapUIHttpClient] Stale connection check
+09:55:03,788 DEBUG [HttpClientSupport$SoapUIHttpClient] Attempt 1 to execute request
+09:55:03,788 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Sending request: POST /Plugins/Misc.WebServicesCustomer/Remote/NopService.svc HTTP/1.1
+09:55:03,900 DEBUG [SoapUIMultiThreadedHttpConnectionManager$SoapUIDefaultClientConnection] Receiving response: HTTP/1.1 500 Internal Server Error
+09:55:03,901 DEBUG [HttpClientSupport$SoapUIHttpClient] Connection can be kept alive indefinitely
+09:55:03,907 WARN  [WsdlValidator] Missing matching Fault in wsdl for Fault Detail element [<detail>
+  <ExceptionDetail xmlns="http://schemas.datacontract.org/2004/07/System.ServiceModel" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+    <HelpLink i:nil="true"/>
+    <InnerException i:nil="true"/>
+    <Message>Not allowed</Message>
+    <StackTrace><![CDATA[at Nop.Plugin.Misc.WebServicesCustomer.NopService.CheckAccess(String usernameOrEmail, String userPassword)
+   at Nop.Plugin.Misc.WebServicesCustomer.NopService.GetPaymentMethodCollection(String usernameOrEmail, String userPassword)
+   at SyncInvokeGetPaymentMethodCollection(Object , Object[] , Object[] )
+   at System.ServiceModel.Dispatcher.SyncMethodInvoker.Invoke(Object instance, Object[] inputs, Object[]& outputs)
+   at System.ServiceModel.Dispatcher.DispatchOperationRuntime.InvokeBegin(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage5(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage41(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage4(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage31(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage3(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage2(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage11(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage1(MessageRpc& rpc)
+   at System.ServiceModel.Dispatcher.MessageRpc.Process(Boolean isOperationContextSet)]]></StackTrace>
+    <Type>System.ApplicationException</Type>
+  </ExceptionDetail>
+</detail>] in bindingOperation [GetPaymentMethodCollection]
+09:55:03,924 INFO  [SoapUITestCaseRunner] Assertion [Valid HTTP Status Codes] has status VALID
+09:55:03,925 INFO  [SoapUITestCaseRunner] Assertion [Contains] has status VALID
+09:55:03,925 INFO  [SoapUITestCaseRunner] Assertion [SOAP Response] has status VALID
+09:55:03,926 INFO  [SoapUITestCaseRunner] Assertion [Schema Compliance] has status VALID
+09:55:03,926 INFO  [SoapUITestCaseRunner] Finished running SoapUI testcase [Wrong username], time taken: 671ms, status: FINISHED
+09:55:03,926 INFO  [SoapUITestCaseRunner] TestSuite [Log in testing] finished with status [FINISHED] in 3893ms
+
+SoapUI 5.2.1 TestCaseRunner Summary
+-----------------------------
+Time Taken: 3906ms
+Total TestSuites: 1
+Total TestCases: 4 (0 failed)
+Total TestSteps: 10
+Total Request Assertions: 44
+Total Failed Assertions: 0
+Total Exported Results: 0
