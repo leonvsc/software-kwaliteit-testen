@@ -1,5 +1,4 @@
 import {test, expect, Page} from '@playwright/test';
-import exp = require("constants");
 
 test('login', async ({ page }) => {
   await page.goto('https://demowebshop.tricentis.com/login/');

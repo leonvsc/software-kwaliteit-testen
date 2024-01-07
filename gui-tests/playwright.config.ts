@@ -9,6 +9,15 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
+
+// Local reporter configuration.
+let reporter = [['html', { open: 'never' }]];
+
+// Tweak reporter when running in Sauce Labs.
+if (process.env.SAUCE_VM) {
+  reporter = [['html', { open: 'never'}]];
+}
+
 export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
