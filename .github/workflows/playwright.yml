@@ -25,9 +25,12 @@ jobs:
     - name: Run Playwright test Firefox
       working-directory: ./gui-tests
       run: npx playwright test --project firefox
-    - name: Run Playwright test chromium
+    - name: Run Playwright test Webkit
       working-directory: ./gui-tests
       run: npx playwright test --project webkit
+    - name: Run Saucelabs test
+      working-directory: ./gui-tests
+      run: saucectl run --region eu-central-1
     - uses: actions/upload-artifact@v3
       if: always()
       with:
