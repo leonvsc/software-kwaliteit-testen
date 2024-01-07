@@ -32,7 +32,7 @@ test('login', async ({ page }) => {
   await page.getByRole('link', { name: 'Shopping cart', exact: true }).click();
   const test = page.locator("tr")
       .filter({hasText: "Total:"})
-      .locator("strong");
+      .locator(".order-total").filter({hasText: "101.00"});
 
   await expect(test).toContainText("101.00")
 
