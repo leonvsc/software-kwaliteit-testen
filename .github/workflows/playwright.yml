@@ -19,9 +19,15 @@ jobs:
     - name: Install Playwright Browsers
       working-directory: ./gui-tests
       run: npx playwright install --with-deps
-    - name: Run Playwright tests
+    - name: Run Playwright test Chromium
       working-directory: ./gui-tests
-      run: npx playwright test
+      run: npx playwright test --project chromium
+    - name: Run Playwright test Firefox
+      working-directory: ./gui-tests
+      run: npx playwright test --project firefox
+    - name: Run Playwright test chromium
+      working-directory: ./gui-tests
+      run: npx playwright test --project webkit
     - uses: actions/upload-artifact@v3
       if: always()
       with:
