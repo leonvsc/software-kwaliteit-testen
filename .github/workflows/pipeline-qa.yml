@@ -16,8 +16,4 @@ on:
 jobs:
     call-jmeter:
       uses: ./.github/workflows/Performance_Test_Workflow.yml
-      secrets:
-        jmeter_username: ${{ secrets.SOAP_USERNAME }}
-        jmeter_password: ${{ secrets.SOAP_PASSWORD }}
-        mail_username: ${{ secrets.MAIL_USERNAME }}
-        mail_password: ${{ secrets.MAIL_PASSWORD }}
+      secrets: inherit
