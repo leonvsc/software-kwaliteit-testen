@@ -1,9 +1,10 @@
 name: Performance Test pipeline
 
-# Injecting credentials safely for tests
 env:
-  JMETER_USERNAME: ${{ secrets.SOAP_USERNAME }}
-  JMETER_PASSWORD: ${{ secrets.SOAP_PASSWORD }}
+  JMETER_USERNAME: ${{ secrets.jmeter_username }}
+  JMETER_PASSWORD: ${{ secrets.jmeter_password }}
+  MAIL_USERNAME: ${{ secrets.mail_username }}
+  MAIL_PASSWORD: ${{ secrets.mail_password}}
   SUCCESS_GIF: 'https://media.giphy.com/media/3o7WTL4qQCbbLLV2Pm/giphy.gif'
   FAILURE_GIF: 'https://i.gifer.com/P4Y.gif'
 
@@ -12,6 +13,15 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   workflow_call:
+    secrets:
+      jmeter_username:
+        required: true
+      jmeter_password:
+        required: true
+      mail_username:
+        required: true
+      mail_password:
+        required: true
 
   # Triggers the workflow on push or pull request events but only for the "Gab-pipeline-test-branche" branch
   push:
@@ -145,9 +155,9 @@ jobs:
         # Optional whether this connection use TLS (default is true if server_port is 465)
         secure: false
         # Optional (recommended) mail server username:
-        username: ${{ secrets.MAIL_USERNAME }}
+        username: ${{ env.MAIL_USERNAME }}
         # Optional (recommended) mail server password:
-        password: ${{ secrets.MAIL_PASSWORD }}
+        password: ${{ env.MAIL_PASSWORD }}
         # Required mail subject:
         subject: ${{env.TEST_RESULT_SUBJECT}} Performance test ${{ env.TIMESTAMP }} Github Actions job result
         # Required recipients' addresses:
