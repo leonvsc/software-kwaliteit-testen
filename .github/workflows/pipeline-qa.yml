@@ -15,5 +15,11 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
     call-jmeter:
-      uses: ./.github/workflows/Performance_Test_Workflow.yml
-      secrets: inherit
+        uses: ./.github/workflows/Performance_Test_Workflow.yml
+        secrets: inherit
+        
+    call-soap:
+        needs: call-jmeter
+        if: always()
+        uses: ./.github/workflows/soaptest.yml
+        secrets: inherit
