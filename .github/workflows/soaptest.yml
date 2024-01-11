@@ -3,7 +3,7 @@ name: SoapUI Tests
 on:
   push:
     branches: ['**']
-    pull_request:
+  pull_request:
       branches: [ "main" ]
 
 jobs:
