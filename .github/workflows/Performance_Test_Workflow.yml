@@ -92,7 +92,6 @@ jobs:
     # testing
     - name: Run JMeter Test
       run: |
-        echo "${PWD}"
         jmeter -f -n -t "JMeterPerformanceTest/Demo web shop Tricentis.jmx" -JjtlFile=JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_performance_testresults.jtl -Jusername=$JMETER_USERNAME -Jpassword=$JMETER_PASSWORD \
         -l JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_performance_testresults.jtl \
         -e -o JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report \
