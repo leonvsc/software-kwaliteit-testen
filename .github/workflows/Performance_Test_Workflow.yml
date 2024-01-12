@@ -92,10 +92,10 @@ jobs:
     # testing
     - name: Run JMeter Test
       run: |
-        jmeter -f -n -t ".github/JMeterPerformanceTest/Demo web shop Tricentis.jmx" -JjtlFile=.github/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_testresults_performance.jtl -Jusername=$JMETER_USERNAME -Jpassword=$JMETER_PASSWORD \
-        -l .github/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_testresults_performance.jtl \
+        jmeter -f -n -t ".github/JMeterPerformanceTest/Demo web shop Tricentis.jmx" -JjtlFile=.github/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_performance_testresults.jtl -Jusername=$JMETER_USERNAME -Jpassword=$JMETER_PASSWORD \
+        -l .github/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_performance_testresults.jtl \
         -e -o .github/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report \
-        -j .github/JMeterPerformanceTest/Results/Logs/${{ env.TIMESTAMP }}_jmeter.log || (echo "JMeter test failed" && exit 1)
+        -j .github/JMeterPerformanceTest/Results/Logs/${{ env.TIMESTAMP }}_jmeter_performance.log || (echo "JMeter test failed" && exit 1)
 
     # Run Groovy Script to Generate Summary Report
     - name: Generate Summary Report
