@@ -1,8 +1,8 @@
 import groovy.xml.MarkupBuilder
 
 String timestamp = System.env.TIMESTAMP
-String jtlFilePath = "The-great-pipeline-of-pipelines/JMeterPerformanceTest/Results/Reports/${timestamp}_Report/${timestamp}_performance_testresults.jtl"
-String outputXmlPath = "The-great-pipeline-of-pipelines/JMeterPerformanceTest/Results/Reports/${timestamp}_Report/${timestamp}_summary_performance_report.xml"
+String jtlFilePath = "JMeterPerformanceTest/Results/Reports/${timestamp}_Report/${timestamp}_performance_testresults.jtl"
+String outputXmlPath = "JMeterPerformanceTest/Results/Reports/${timestamp}_Report/${timestamp}_summary_performance_report.xml"
 
 int warningThreshold = 200  // Warning threshold in milliseconds
 int slaThreshold = 300      // SLA threshold in milliseconds
