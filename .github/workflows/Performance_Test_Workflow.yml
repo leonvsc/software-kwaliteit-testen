@@ -92,7 +92,7 @@ jobs:
     # testing
     - name: Run JMeter Test
       run: |
-        jmeter -f -n -t "The-great-pipeline-of-pipelines/JMeterPerformanceTest/Demo web shop Tricentis.jmx" -JjtlFile=The-great-pipeline-of-pipelines/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_performance_testresults.jtl -Jusername=$JMETER_USERNAME -Jpassword=$JMETER_PASSWORD \
+        jmeter -f -n -t "../The-great-pipeline-of-pipelines/JMeterPerformanceTest/Demo web shop Tricentis.jmx" -JjtlFile=The-great-pipeline-of-pipelines/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_performance_testresults.jtl -Jusername=$JMETER_USERNAME -Jpassword=$JMETER_PASSWORD \
         -l The-great-pipeline-of-pipelines/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_performance_testresults.jtl \
         -e -o The-great-pipeline-of-pipelines/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report \
         -j The-great-pipeline-of-pipelines/JMeterPerformanceTest/Results/Logs/${{ env.TIMESTAMP }}_jmeter_performance.log || (echo "JMeter test failed" && exit 1)
