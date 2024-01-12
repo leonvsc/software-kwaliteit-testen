@@ -3,7 +3,13 @@ on:
   push:
     branches: [ '**' ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
+
+  env:
+    SAUCE_USERNAME: ${{secrets.SAUCE_USERNAME}}
+    SAUCE_ACCESS_KEY: ${{secrets.SAUCE_ACCESS_KEY}}
+    GITHUB_TOKEN: ${{ github.token }}
+
 jobs:
   test:
     timeout-minutes: 60
@@ -13,24 +19,41 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 18
+
+    - name: Saucectl RUN
+      uses: saucelabs/saucectl-run-action@v3
+      with:
+        concurrency: 10
+
     - name: Install dependencies
       working-directory: ./gui-tests
       run: npm ci
+
     - name: Install Playwright Browsers
       working-directory: ./gui-tests
       run: npx playwright install --with-deps
+
     - name: Run Playwright test Chromium
       working-directory: ./gui-tests
       run: npx playwright test --project chromium
+
     - name: Run Playwright test Firefox
       working-directory: ./gui-tests
       run: npx playwright test --project firefox
+
     - name: Run Playwright test Webkit
       working-directory: ./gui-tests
       run: npx playwright test --project webkit
+
     - name: Run Saucelabs test
       working-directory: ./gui-tests
       run: saucectl run --region eu-central-1
+
+    - name: Saucectl RUN - Config Driven
+      uses: saucelabs/saucectl-run-action@v3
+      with:
+        working-directory: ./examples/cucumber/
+
     - uses: actions/upload-artifact@v3
       if: always()
       with:
