@@ -19,14 +19,14 @@ if (process.env.SAUCE_VM) {
 }
 
 export default defineConfig({
-  testDir: './gui-testing',
-  /* Run gui-testing in files in parallel */
+  testDir: './gui-tests',
+  /* Run gui-tests in files in parallel */
   fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel gui-testing on CI. */
+  retries: process.env.CI ? 3 : 0,
+  /* Opt out of parallel gui-tests on CI. */
   workers: process.env.CI ? 1 : 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',

@@ -6,7 +6,7 @@ name: CI-Pipeline
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: [ "**" ]
   pull_request:
     branches: [ "main" ]
 
@@ -16,17 +16,23 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
     call-performancetest:
-        uses: ./.github/workflows/Performance_Test_Workflow.yml
-        secrets: inherit
+      uses: ./.github/workflows/Performance_Test_Workflow.yml
+      secrets: inherit
         
-    call-apitests:
-        needs: call-performancetest
-        if: always()
-        uses: ./.github/workflows/soaptest.yml
-        secrets: inherit
+    call-apitest:
+      needs: call-performancetest
+      if: always()
+      uses: ./.github/workflows/soaptest.yml
+      secrets: inherit
     
-    call-unittests:
+    call-unittest:
       needs: call-apitests
       if: always()
       uses: ./.github/workflows/dotnet.yml
+      secrets: inherit
+
+    call-guitest:
+      needs: call-unittests
+      if: always()
+      uses: ./.github/workflows/playwright.yml
       secrets: inherit

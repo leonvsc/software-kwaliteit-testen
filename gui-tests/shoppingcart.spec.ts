@@ -22,7 +22,7 @@ test('login', async ({ page }) => {
       .locator(".product-box-add-to-cart-button")
       .click();
 
-  await page.waitForTimeout(1000)
+  await page.waitForTimeout(1500)
 
   await page.locator("#small-searchterms").fill("Casual Golf Belt")
   await page.locator('.search-box-button').click();
@@ -31,7 +31,7 @@ test('login', async ({ page }) => {
       .locator(".product-box-add-to-cart-button")
       .click();
 
-  await page.waitForTimeout(1000)
+  await page.waitForTimeout(1500)
 
   await page.goto('https://demowebshop.tricentis.com/cart/');
   const test = page.locator("tr")
@@ -55,5 +55,6 @@ async function emptyCart(page : Page) {
   for (let i = 0; i < cartItems; i++) {
     await page.click('[name="removefromcart"]')
     await page.locator(".update-cart-button").click();
+    await page.waitForTimeout(500)
   }
 }

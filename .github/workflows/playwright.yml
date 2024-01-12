@@ -1,9 +1,6 @@
 name: Playwright Tests
 on:
-  push:
-    branches: [ '**' ]
-  pull_request:
-    branches: [ main ]
+  workflow_call:
 
 env:
   SAUCE_USERNAME: ${{secrets.SAUCE_USERNAME}}
