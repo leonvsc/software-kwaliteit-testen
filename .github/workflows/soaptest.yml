@@ -2,10 +2,6 @@ name: SoapUI Tests
 
 on:
   workflow_call:
-  push:
-    branches: ['**']
-  pull_request:
-      branches: [ "main" ]
 
 jobs:
   soapui-tests:
@@ -13,7 +9,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Download and Run SoapUI Tests
         run: |
