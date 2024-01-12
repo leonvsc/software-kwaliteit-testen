@@ -26,13 +26,13 @@ jobs:
       secrets: inherit
     
     call-unittest:
-      needs: call-apitests
+      needs: call-apitest
       if: always()
       uses: ./.github/workflows/dotnet.yml
       secrets: inherit
 
     call-guitest:
-      needs: call-unittests
+      needs: call-unittest
       if: always()
       uses: ./.github/workflows/playwright.yml
       secrets: inherit
