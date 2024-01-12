@@ -192,7 +192,7 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: ${{env.TIMESTAMP}}_jmeter-logs
+        name: ${{env.TIMESTAMP}}_jmeter-performance-logs
         path: JMeterPerformanceTest/Results/Logs/${{ env.TIMESTAMP }}_jmeter_performance.log
     
     # Upload JMeter logs and report zipped as an artifact
@@ -206,5 +206,5 @@ jobs:
     - name: Upload JMeter Test Results
       uses: actions/upload-artifact@v4
       with:
-        name: ${{env.TIMESTAMP}}_jmeter-results
+        name: ${{env.TIMESTAMP}}_jmeter-performance-results
         path: JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report
