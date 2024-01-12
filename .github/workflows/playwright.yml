@@ -5,9 +5,9 @@ on:
   pull_request:
     branches: [ main ]
 
-defaults:
-  run:
-    working-directory: ./gui-tests
+#defaults:
+#  run:
+#    working-directory: ./gui-tests
 
 env:
   SAUCE_USERNAME: ${{secrets.SAUCE_USERNAME}}
