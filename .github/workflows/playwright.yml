@@ -21,6 +21,7 @@ jobs:
         node-version: 18
 
     - name: Saucectl RUN
+      working-directory: ./gui-tests
       uses: saucelabs/saucectl-run-action@v3
       with:
         concurrency: 10
@@ -50,6 +51,7 @@ jobs:
       run: saucectl run --region eu-central-1
 
     - name: Saucectl RUN - Config Driven
+      working-directory: ./gui-tests
       uses: saucelabs/saucectl-run-action@v3
       with:
         working-directory: ./examples/cucumber/
