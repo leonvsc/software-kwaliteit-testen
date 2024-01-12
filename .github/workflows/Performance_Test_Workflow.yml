@@ -35,8 +35,8 @@ jobs:
     # Makes directories that are needed for logs and reports
     - name: Create Directories for JMeter Logs and Reports
       run: |
-        mkdir -p .github/JMeterPerformanceTest/Results/Logs
-        mkdir -p .github/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report
+        mkdir -p The-great-pipeline-of-pipelines/JMeterPerformanceTest/Results/Logs
+        mkdir -p The-great-pipeline-of-pipelines/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report
 
     # Update apt-get
     - name: Update apt-get
@@ -92,15 +92,15 @@ jobs:
     # testing
     - name: Run JMeter Test
       run: |
-        jmeter -f -n -t ".github/JMeterPerformanceTest/Demo web shop Tricentis.jmx" -JjtlFile=.github/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_performance_testresults.jtl -Jusername=$JMETER_USERNAME -Jpassword=$JMETER_PASSWORD \
-        -l .github/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_performance_testresults.jtl \
-        -e -o .github/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report \
-        -j .github/JMeterPerformanceTest/Results/Logs/${{ env.TIMESTAMP }}_jmeter_performance.log || (echo "JMeter test failed" && exit 1)
+        jmeter -f -n -t "The-great-pipeline-of-pipelines/JMeterPerformanceTest/Demo web shop Tricentis.jmx" -JjtlFile=The-great-pipeline-of-pipelines/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_performance_testresults.jtl -Jusername=$JMETER_USERNAME -Jpassword=$JMETER_PASSWORD \
+        -l The-great-pipeline-of-pipelines/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_performance_testresults.jtl \
+        -e -o The-great-pipeline-of-pipelines/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report \
+        -j The-great-pipeline-of-pipelines/JMeterPerformanceTest/Results/Logs/${{ env.TIMESTAMP }}_jmeter_performance.log || (echo "JMeter test failed" && exit 1)
 
     # Run Groovy Script to Generate Summary Report
     - name: Generate Summary Report
       run: |
-        groovy .github/Scripts/performance-test-summary-script.groovy
+        groovy The-great-pipeline-of-pipelines/Scripts/performance-test-summary-script.groovy
 
     # Check the success or failure status of the test run even when another step might fail after the jmeter test
     - name: Set test result message
@@ -117,7 +117,7 @@ jobs:
     # Compress JMeter Results and Logs
     - name: Compress JMeter Results and Logs
       run: |
-        zip -r jmeter_performance_reports_and_logs_zipped_${{ env.TIMESTAMP }}.zip .github/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report .github/JMeterPerformanceTest/Results/Logs/${{ env.TIMESTAMP }}_jmeter_performance.log
+        zip -r jmeter_performance_reports_and_logs_zipped_${{ env.TIMESTAMP }}.zip The-great-pipeline-of-pipelines/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report The-great-pipeline-of-pipelines/JMeterPerformanceTest/Results/Logs/${{ env.TIMESTAMP }}_jmeter_performance.log
 
     # Sends email
     - name: Send mail
@@ -181,8 +181,8 @@ jobs:
         convert_markdown: true
         # Optional attachments:
         attachments: |
-          .github/JMeterPerformanceTest/Results/Logs/${{ env.TIMESTAMP }}_jmeter_performance.log,
-          .github/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_summary_performance_report.xml
+          The-great-pipeline-of-pipelines/JMeterPerformanceTest/Results/Logs/${{ env.TIMESTAMP }}_jmeter_performance.log,
+          The-great-pipeline-of-pipelines/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report/${{ env.TIMESTAMP }}_summary_performance_report.xml
         # Optional priority: 'high', 'normal' (default) or 'low'
         priority: low
 
@@ -192,7 +192,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: ${{env.TIMESTAMP}}_jmeter-logs
-        path: .github/JMeterPerformanceTest/Results/Logs/${{ env.TIMESTAMP }}_jmeter_performance.log
+        path: The-great-pipeline-of-pipelines/JMeterPerformanceTest/Results/Logs/${{ env.TIMESTAMP }}_jmeter_performance.log
     
     # Upload JMeter logs and report zipped as an artifact
     - name: Upload JMeter zipped Logs and reports
@@ -206,4 +206,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: ${{env.TIMESTAMP}}_jmeter-results
-        path: .github/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report
+        path: The-great-pipeline-of-pipelines/JMeterPerformanceTest/Results/Reports/${{ env.TIMESTAMP }}_Report
