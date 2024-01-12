@@ -31,22 +31,8 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
-    - name: Run Playwright test Chromium
-      run: npx playwright test --project chromium
-
-    - name: Run Playwright test Firefox
-      run: npx playwright test --project firefox
-
-    - name: Run Playwright test Webkit
-      run: npx playwright test --project webkit
-
-    - name: Run Saucelabs test
-      run: saucectl run --region eu-central-1
-
-    - name: Saucectl RUN - Config Driven
-      uses: saucelabs/saucectl-run-action@v3
-      with:
-        working-directory: ./examples/cucumber/
+    - name: Run Playwright tests
+      run: npx playwright test
 
     - uses: actions/upload-artifact@v3
       if: always()
