@@ -133,9 +133,9 @@
               <message>true</message>
               <threadName>true</threadName>
               <dataType>true</dataType>
-              <encoding>false</encoding>
-              <assertions>true</assertions>
-              <subresults>true</subresults>
+              <encoding>false</encoding> <!-- If you do not need it, set to false -->
+              <assertions>true</assertions> <!-- If you do not need it, set to false -->
+              <subresults>false</subresults>
               <responseData>false</responseData>
               <samplerData>false</samplerData>
               <xml>false</xml>
@@ -151,7 +151,8 @@
               <threadCounts>true</threadCounts>
               <idleTime>true</idleTime>
               <connectTime>true</connectTime>
-            </value>
+              <sampleCount>false</sampleCount> <!-- Set to false if not needed -->
+          </value>
           </objProp>
           <stringProp name="filename">${jtlFile}</stringProp>
         </ResultCollector>
