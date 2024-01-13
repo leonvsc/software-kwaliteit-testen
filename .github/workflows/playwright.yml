@@ -18,7 +18,7 @@ jobs:
         node-version: 18
 
     - name: Saucectl RUN
-      uses: saucelabs/saucectl-run-action@v4
+      uses: saucelabs/saucectl-run-action@v3
       with:
         concurrency: 10
 
