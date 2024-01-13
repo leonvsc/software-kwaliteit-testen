@@ -16,17 +16,23 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
     call-performancetest:
-        uses: ./.github/workflows/Performance_Test_Workflow.yml
-        secrets: inherit
+      uses: ./.github/workflows/Performance_Test_Workflow.yml
+      secrets: inherit
         
-    call-apitests:
-        needs: call-performancetest
-        if: always()
-        uses: ./.github/workflows/soaptest.yml
-        secrets: inherit
+    call-apitest:
+      needs: call-performancetest
+      if: always()
+      uses: ./.github/workflows/soaptest.yml
+      secrets: inherit
     
-    call-unittests:
-      needs: call-apitests
+    call-unittest:
+      needs: call-apitest
       if: always()
       uses: ./.github/workflows/dotnet.yml
+      secrets: inherit
+
+    call-guitest:
+      needs: call-unittest
+      if: always()
+      uses: ./.github/workflows/playwright.yml
       secrets: inherit
