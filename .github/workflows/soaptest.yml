@@ -34,3 +34,11 @@ jobs:
           echo "Error: there are test failures, check tests/testOutput.txt for more information"
           exit 1 
           fi
+          
+      # Upload SoapUI logs as an artifact
+      - name: Upload SoapUI Logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{env.TIMESTAMP}}_soapUi-test-logs
+          path: tests/testOutput.txt
