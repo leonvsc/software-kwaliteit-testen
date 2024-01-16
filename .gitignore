@@ -3,3 +3,10 @@ playwright-report/
 blob-report/
 playwright/.cache/
 node_modules/
+.idea/
+UnitTests/ClassAssignmentAvans.Tests/bin/
+UnitTests/ClassAssignmentAvans.Tests/obj/
+UnitTests/ClassAssignmentAvans/bin/
+UnitTests/ClassAssignmentAvans/obj/
+UnitTests/UnitTests.sln.DotSettings.user
+
